@@ -75,11 +75,9 @@ export default function Footer() {
             </div>
           </div>
 
-            {/* Hier kann man sich Anmelden und Ausloggen um Spielberichte oder Events hochzuladen
-                Kann man wieder mit Auth0 oder sowas umsetzen, siehe frühere Projekte */} 
-          <button > 
-              Anmelden / Ausloggen
-          </button>
+          {/* Hier kann man sich Anmelden und Ausloggen um Spielberichte oder Events hochzuladen
+                Kann man wieder mit Auth0 oder sowas umsetzen, siehe frühere Projekte */}
+          <button>Anmelden / Ausloggen</button>
 
           <div
             className="text-center p-4"

@@ -70,6 +70,21 @@ export default function Navbar() {
                 Sponsoren
               </a>
             </Link>
+            <Link href="/termine">
+              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold items-center justify-center hover:bg-yellow-600 hover:text-black">
+                Termine
+              </a>
+            </Link>
+            <Link href="/News">
+              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold items-center justify-center hover:bg-yellow-600 hover:text-black">
+                News
+              </a>
+            </Link>
+            <Link href="/socialMedia">
+              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold items-center justify-center hover:bg-yellow-600 hover:text-black">
+                Social Media
+              </a>
+            </Link>
           </div>
         </div>
       </nav>
