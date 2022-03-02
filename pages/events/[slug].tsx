@@ -5,6 +5,8 @@ import useSWR from 'swr'
 import { GraphQLClient, gql } from 'graphql-request'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
+import BeitragComponent from '../../components/beitrag'
+import BeitragComponentSmall from '../../components/beitragSmall'
 
 interface IBeitrag {
   id: string
@@ -22,35 +24,32 @@ const client = new GraphQLClient(
 
 export default function Beitrag({ beitrag }: { beitrag: IBeitrag }) {
   return (
-    <main>
-      <div className="bg-sky-500/50 mt-3 mb-3 w-5/6 mx-auto rounded-md ">
-          <div className='w-4/5 pt-3 pb-3 mx-auto'>
-            <h1 className="text-xl font-bold ">{beitrag.title}</h1>
-            <h2 className="text-sm font-light text-right">{beitrag.date}</h2>
-            <p>{beitrag.description}</p>
-
-            <div className="flex flex-col  md:flex-row justify-between ">
-                <div className="w-full pt-4 md:w-1/2 md:pr-3">
-                <img
-                src={beitrag.image}
-                alt={beitrag.title}
-                className="rounded-md"
-                
-              />
-                </div>
-             <div className="w-full pt-4 md:w-1/2 md:pl-3">
-             <img
-                src={beitrag.image}
-                alt={beitrag.title}
-                className="rounded-md"
-                
-              />
-             </div>
-             
-            </div>
-          </div>
+    <>
+      <BeitragComponent
+        title={beitrag.title}
+        date={beitrag.date}
+        description={beitrag.description}
+        image={beitrag.image}
+      />
+      <div className="flex flex-col md:flex-row w-5/6 justify-between mx-auto">
+        <div className="md:mr-3">
+          <BeitragComponentSmall
+            title={beitrag.title}
+            date={beitrag.date}
+            description={beitrag.description}
+            image={beitrag.image}
+          />
         </div>
-    </main>
+        <div className="md:ml-3">
+          <BeitragComponentSmall
+            title={beitrag.title}
+            date={beitrag.date}
+            description={beitrag.description}
+            image={beitrag.image}
+          />
+        </div>
+      </div>
+    </>
   )
 }
 
@@ -109,4 +108,5 @@ export const getStaticPaths: GetStaticPaths = async () => {
     })),
     fallback: 'blocking',
   }
+
 }
