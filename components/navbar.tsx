@@ -75,7 +75,7 @@ export default function Navbar() {
                 Termine
               </a>
             </Link>
-            <Link href="/News">
+            <Link href="/news">
               <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-black font-bold items-center justify-center hover:bg-yellow-600 hover:text-black">
                 News
               </a>

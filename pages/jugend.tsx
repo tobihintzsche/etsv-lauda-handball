@@ -14,7 +14,6 @@ export default function jugend() {
   return (
     <div>
       <h2 className="text-center text-xl font-bold">Nachwuchs</h2>
-      
     </div>
   )
 }
