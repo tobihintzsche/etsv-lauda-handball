@@ -18,7 +18,7 @@ export default function Navbar() {
           <a className="inline-flex items-center p-2 ">
             {/* Hier Logo ETSV Lauda Handball einfügen */}
 
-            <span className="text-xl text-black font-bold uppercase tracking-wide mr-2">
+            <span className="text-m text-black font-bold uppercase tracking-wide mr-2 md:text-xl">
               ETSV LAUDA HANDBALL
             </span>
             <Image src={Logo} alt="ETSV Logo" height={60} width={60} />
