@@ -1,6 +1,13 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Layout from '../components/layout'
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  useQuery,
+  gql,
+} from '@apollo/client'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

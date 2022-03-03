@@ -18,6 +18,10 @@ interface IBeitrag {
   zuweisung: string
 }
 
+interface IBeitraege {
+  beitraege: IBeitrag[]
+}
+
 const client = new GraphQLClient(
   'https://api-eu-central-1.graphcms.com/v2/cl0874wb42pah01xr1jnmabfu/master'
 )
@@ -108,5 +112,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
     })),
     fallback: 'blocking',
   }
-
 }
