@@ -5,7 +5,6 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import useSWR from 'swr'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
-import Beitrag from './events/[slug]'
 import {
   ApolloClient,
   InMemoryCache,
@@ -15,8 +14,9 @@ import {
 } from '@apollo/client'
 import { renderToHTML } from 'next/dist/server/render'
 import BeitragComponent from '../components/beitrag'
-import BeitragComponentSmall from '../components/beitragSmall'
 import EventSmall from '../components/eventSmall'
+import SponsorSmall from '../components/sponsorSmall copy'
+import BeitragComponentSmall from '../components/beitragSmall'
 
 interface IBeitrag {
   id: string
@@ -28,7 +28,7 @@ interface IBeitrag {
   zuweisung: string
 }
 
-interface Itermine {
+interface IBeitraege {
   beitrag: IBeitrag[]
 }
 
@@ -40,40 +40,35 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 })
 
-// var string = "this is a string";
-// var length = 7;
-// var trimmedString = string.substring(0, length);
+console.log(client)
 
-export default function termine({ termine }) {
+export default function InfoBarRight({ termine, sponsoren }) {
   return (
     <>
-      <EventSmall
-        eventTitle={termine[0].eventTitle}
-        dateAndTime={termine[0].dateAndTime}
-        location={termine[0].location}
-      />
+      <div>
+        <EventSmall
+          eventTitle={termine[0].eventTitle}
+          dateAndTime={termine[0].dateAndTime}
+          location={termine[0].location}
+        />
+        <EventSmall
+          eventTitle={termine[1].eventTitle}
+          dateAndTime={termine[1].dateAndTime}
+          location={termine[1].location}
+        />
+        <EventSmall
+          eventTitle={termine[2].eventTitle}
+          dateAndTime={termine[2].dateAndTime}
+          location={termine[2].location}
+        />
+        <SponsorSmall image={sponsoren[0].image} slug={sponsoren[0].slug} />
+        <SponsorSmall image={sponsoren[1].image} slug={sponsoren[1].slug} />
+      </div>
     </>
   )
 }
 
-export async function getStaticProps() {
-  const { data } = await client.query({
-    query: gql`
-      query termin {
-        termine(where: { zuweisung: Herren }, last: 3) {
-          eventTitle
-          dateAndTime
-          location
-        }
-      }
-    `,
-  })
 
-  //console.log(data)
 
-  return {
-    props: {
-      termine: data.termine.slice(0, 4),
-    },
-  }
-}
+  
+
