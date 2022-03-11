@@ -38,6 +38,7 @@ interface IBeitraege {
 const endpoint =
   'https://api-eu-central-1.graphcms.com/v2/cl0874wb42pah01xr1jnmabfu/master'
 
+
 const client = new ApolloClient({
   uri: endpoint,
   cache: new InMemoryCache(),

@@ -72,5 +72,9 @@ export default function InfoBarRight({ termine, sponsoren }) {
 
 
 
+
+
+
+
   
 
