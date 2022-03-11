@@ -60,6 +60,8 @@ export default function jugend({ beitraege, termine, sponsoren }) {
         date={beitraege[0].date}
         description={beitraege[0].description.substring(0, 200)}
         image={beitraege[0].image}
+        slug={beitraege[0].slug}
+
       />
       <div className="flex flex-col md:flex-row  justify-between mx-auto">
         <div className="md:mr-3">
@@ -93,12 +95,12 @@ export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
       query termin {
-        termine(where: { zuweisung: Herren }, last: 3) {
+        termine(last: 3) {
           eventTitle
           dateAndTime
           location
         }
-        beitraege(where: { zuweisung: "Herren" }, last: 3) {
+        beitraege(where: { zuweisung: "Jugend" }, last: 3) {
           id
           title
           slug

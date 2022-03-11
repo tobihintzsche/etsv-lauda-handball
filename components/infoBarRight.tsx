@@ -45,7 +45,7 @@ console.log(client)
 export default function InfoBarRight({ termine, sponsoren }) {
   return (
     <>
-      <div>
+      <div className='md:border-l-2 pl-2 border-black pb-2'>
         <EventSmall
           eventTitle={termine[0].eventTitle}
           dateAndTime={termine[0].dateAndTime}
@@ -63,6 +63,8 @@ export default function InfoBarRight({ termine, sponsoren }) {
         />
         <SponsorSmall image={sponsoren[0].image} slug={sponsoren[0].slug} />
         <SponsorSmall image={sponsoren[1].image} slug={sponsoren[1].slug} />
+        <SponsorSmall image={sponsoren[2].image} slug={sponsoren[2].slug} />
+
       </div>
     </>
   )

@@ -18,12 +18,12 @@ const BeitragComponentSmall = ({ title, date, description, image }: IProps) => {
           <p>{description}</p>
 
           <div className="flex flex-col  md:flex-row justify-between ">
-            <div className="w-full pt-4 md:w-full">
+            <div className="w-full pt-4">
               <img
                 src={image}
                 alt={title}
-                className="rounded-md"
-                style={{ maxHeight: '200px' }}
+                className="rounded-md w-full"
+                
               />
             </div>
           </div>

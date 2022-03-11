@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 interface IProps {
@@ -5,9 +6,10 @@ interface IProps {
   date: string
   description: string
   image: string
+  slug: string
 }
 
-const BeitragComponent = ({ title, date, description, image }: IProps) => {
+const BeitragComponent = ({ title, date, description, image, slug }: IProps) => {
   return (
     <main>
       <div className="bg-white mt-3 mb-3 mx-auto rounded-md border-2 border-amber-300">
@@ -16,13 +18,10 @@ const BeitragComponent = ({ title, date, description, image }: IProps) => {
           <h2 className="text-sm font-light text-right">{date}</h2>
   
           <div className="pl-3 pr-3 pt-3 pb-3 mx-auto">
-          <p>{description}</p>
+          <p>{description.substring(0,50)} <Link href={"/events/" + slug}> [Mehr...] </Link></p>
           <div className="flex flex-col  md:flex-row justify-between ">
-            <div className="w-full pt-4 md:w-1/2 md:pr-3">
-              <img src={image} alt={title} className="rounded-md" />
-            </div>
-            <div className="w-full pt-4 md:w-1/2 md:pl-3">
-              <img src={image} alt={title} className="rounded-md" />
+            <div className="pl-3 w-full pt-3 pb-3 pr-3">
+              <img src={image} alt={title} className="rounded-md w-full"  />
             </div>
           </div>
         </div>
