@@ -31,7 +31,7 @@ const EventSmall = ({ eventTitle, dateAndTime, location }: IProps) => {
     <main>
       <div className="rounded-md border-2 border-yellow  md:w-full mt-3 pt-3 pb-3 pr-3 pl-3 mx-auto flex md:flex-col justify-between">
         <div>
-          <h1 className="text-l font-semibold">{eventTitle}</h1>
+          <h1 className="text-l italic font-semibold">{eventTitle.toUpperCase()}</h1>
           <div className="flex pt-1 pb-3">
             <img
               src="https://cdn-icons-png.flaticon.com/512/115/115313.png"

@@ -60,6 +60,7 @@ export default function herren({ beitraege, termine, sponsoren }) {
         date={beitraege[0].date}
         description={beitraege[0].description.substring(0, 200)}
         image={beitraege[0].image}
+        slug={beitraege[0].slug}
       />
       <div className="flex flex-col md:flex-row  justify-between mx-auto">
         <div className="md:mr-3">

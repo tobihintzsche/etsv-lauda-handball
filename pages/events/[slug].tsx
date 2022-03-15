@@ -43,18 +43,17 @@ export default function Beitrag({beitrag, termine, sponsoren}) {
   return (
     <>
  
- <h1 className='text-5xl bg-amber-300
-    pb-3 pt-3 text-center'>HERREN</h1>
+ <h1 className='text-2xl bg-amber-300
+    pb-3 pt-3 text-center'>{beitrag.title}</h1>
     <div style={{width: "90%"}}className=" mx-auto md:justify-between md:flex">
     
       <div className='pt-3 md:pr-3'>
       
-      <h1>{beitrag.title}</h1>
       <h2>{beitrag.date}</h2>
       <h2>
         {beitrag.description}
       </h2>
-      <img src={beitrag.image} alt={beitrag.title} />
+      <img className="pt-3 pb-3" src={beitrag.image} alt={beitrag.title} />
       
 
       </div>

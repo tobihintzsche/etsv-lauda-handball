@@ -119,9 +119,9 @@ export async function getStaticProps() {
 
   return {
     props: {
-      beitraege: data.beitraege.slice(0, 4),
-      termine: data.termine.slice(0, 4),
-      sponsoren: data.sponsoren.slice(0, 4),
+      beitraege: data.beitraege,
+      termine: data.termine,
+      sponsoren: data.sponsoren,
     },
   }
 }
