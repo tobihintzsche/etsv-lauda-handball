@@ -48,44 +48,54 @@ console.log(client)
 export default function herren({ beitraege, termine, sponsoren }) {
   return (
     <>
-  
-    <h1 className='text-5xl bg-amber-300
-    pb-3 pt-3 text-center'>HERREN</h1>
-    <div style={{width: "90%"}}className=" mx-auto md:justify-between md:flex">
-    
-      <div className='pt-3 md:pr-3'>
-       <img src="https://www.fnweb.de/cms_media/module_img/2273/1136993_2_teaser1024r056_img_03355367.jpg" alt="" />
-       <BeitragComponent
-        title={beitraege[0].title}
-        date={beitraege[0].date}
-        description={beitraege[0].description.substring(0, 200)}
-        image={beitraege[0].image}
-        slug={beitraege[0].slug}
-      />
-      <div className="flex flex-col md:flex-row  justify-between mx-auto">
-        <div className="md:mr-3">
-          <BeitragComponentSmall
-            title={beitraege[1].title}
-            date={beitraege[1].date}
-            description={beitraege[1].description.substring(0, 200)}
-            image={beitraege[1].image}
+      <h1
+        className="text-3xl font-bold italic bg-amber-300
+         pt-3 pb-3 text-center"
+      >
+        HERREN
+      </h1>
+      <div
+        style={{ width: '90%' }}
+        className=" mx-auto md:justify-between md:flex"
+      >
+        <div className="pt-3 md:pr-3">
+          <img
+            src="https://www.fnweb.de/cms_media/module_img/2273/1136993_2_teaser1024r056_img_03355367.jpg"
+            alt=""
           />
-        </div>
-        <div className="md:ml-3">
-          <BeitragComponentSmall
+          <BeitragComponent
             title={beitraege[0].title}
             date={beitraege[0].date}
             description={beitraege[0].description.substring(0, 200)}
             image={beitraege[0].image}
+            slug={beitraege[0].slug}
           />
+          <div className="flex flex-col md:flex-row  justify-between mx-auto">
+            <div className="md:mr-3">
+              <BeitragComponentSmall
+                title={beitraege[1].title}
+                date={beitraege[1].date}
+                description={beitraege[1].description.substring(0, 200)}
+                image={beitraege[1].image}
+                slug={beitraege[1].slug}
+              />
+            </div>
+            <div className="md:ml-3">
+              <BeitragComponentSmall
+                title={beitraege[2].title}
+                date={beitraege[2].date}
+                description={beitraege[2].description.substring(0, 200)}
+                image={beitraege[2].image}
+                slug={beitraege[2].slug}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <InfoBarRight termine={termine} sponsoren={sponsoren} />
         </div>
       </div>
-      </div>
-
-     <div>
-       <InfoBarRight termine={termine} sponsoren={sponsoren} /> 
-     </div>
-    </div>
     </>
   )
 }

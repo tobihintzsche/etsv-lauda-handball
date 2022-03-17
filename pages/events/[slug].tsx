@@ -8,6 +8,7 @@ import { MDXRemote } from 'next-mdx-remote'
 import BeitragComponent from '../../components/beitrag'
 import BeitragComponentSmall from '../../components/beitragSmall'
 import InfoBarRight from '../../components/infoBarRight'
+import ReactMarkdown from 'react-markdown'
 
 interface IBeitrag {
   id: string
@@ -19,9 +20,9 @@ interface IBeitrag {
   zuweisung: string
 }
 
-interface ITermin { 
-  eventTitle: string 
-  location: string 
+interface ITermin {
+  eventTitle: string
+  location: string
   dateAndTime: string
   slug: string
   zuweisung: string
@@ -35,39 +36,37 @@ const client = new GraphQLClient(
   'https://api-eu-central-1.graphcms.com/v2/cl0874wb42pah01xr1jnmabfu/master'
 )
 
-export default function Beitrag({beitrag, termine, sponsoren}) {
+export default function Beitrag({ beitrag, termine, sponsoren }) {
 
+  const markdown = beitrag.description
 
-  
-  
   return (
     <>
- 
- <h1 className='text-2xl bg-amber-300
-    pb-3 pt-3 text-center'>{beitrag.title}</h1>
-    <div style={{width: "90%"}}className=" mx-auto md:justify-between md:flex">
-    
-      <div className='pt-3 md:pr-3'>
-      
-      <h2>{beitrag.date}</h2>
-      <h2>
-        {beitrag.description}
-      </h2>
-      <img className="pt-3 pb-3" src={beitrag.image} alt={beitrag.title} />
-      
+      <h1
+        className="text-2xl bg-amber-300
+    pb-3 pt-3 font-bold italic text-center"
+      >
+        {beitrag.title}
+      </h1>
+      <div
+        style={{ width: '90%' }}
+        className=" mx-auto md:justify-between md:flex"
+      >
+        <div className="pt-3 md:pr-3">
+          <h2 className="pb-2 text-slate-400">{beitrag.date}</h2>
+          <ReactMarkdown children={markdown} /> 
+          
+          <img className="pt-3 pb-2 " src={beitrag.image} alt={beitrag.title} />
+          <h4 className="pb-3 text-slate-400"> Foto: {beitrag.title} </h4>
+        </div>
 
+        <div>
+          <InfoBarRight termine={termine} sponsoren={sponsoren} />
+        </div>
       </div>
-
-     <div>
-       <InfoBarRight termine={termine} sponsoren={sponsoren} /> 
-     </div>
-    </div>
-
     </>
   )
 }
-
-
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params!.slug as string
@@ -116,23 +115,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   // Convert the Markdown into a compiled source used by MDX
   const source = await serialize(data.beitrag.description)
 
-  console.log(data.beitrag);
-  console.log(data.termine[0].eventTitle);
-  console.log(data.sponsoren);
-  
-
+  console.log(data.beitrag)
+  console.log(data.termine[0].eventTitle)
+  console.log(data.sponsoren)
 
   // Provide Props to the Page Component
   return {
-    props: { sponsoren: data.sponsoren, termine: data.termine,  beitrag: data.beitrag,  },
+    props: {
+      sponsoren: data.sponsoren,
+      termine: data.termine,
+      beitrag: data.beitrag,
+    },
     revalidate: 60 * 60, // Cache response for 1 hour (60 seconds * 60 minutes)
-    
   }
-
-  
 }
-
-
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const query = gql`

@@ -31,7 +31,9 @@ const EventSmall = ({ eventTitle, dateAndTime, location }: IProps) => {
     <main>
       <div className="rounded-md border-2 border-yellow  md:w-full mt-3 pt-3 pb-3 pr-3 pl-3 mx-auto flex md:flex-col justify-between">
         <div>
-          <h1 className="text-l italic font-semibold">{eventTitle.toUpperCase()}</h1>
+          <h1 className="text-l italic font-semibold">
+            {eventTitle.toUpperCase()}
+          </h1>
           <div className="flex pt-1 pb-3">
             <img
               src="https://cdn-icons-png.flaticon.com/512/115/115313.png"
@@ -41,7 +43,7 @@ const EventSmall = ({ eventTitle, dateAndTime, location }: IProps) => {
           </div>
         </div>
         <div className="border-l-4 pl-3 border-l-amber-300 md:border-0 md:pl-0">
-          <p className='text-xs pb-1'>Zeit bis zum nächsten Spiel</p>
+          <p className="text-xs pb-1">Zeit bis zum nächsten Spiel</p>
           <div className="grid grid-rows-1 grid-flow-col gap-4">
             <div className="">
               <p className="text-2xl text-center">{days}</p>

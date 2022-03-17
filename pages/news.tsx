@@ -45,35 +45,51 @@ const client = new ApolloClient({
 
 console.log(client)
 
-export default function news({ beitraege }) {
-
-
-
+export default function news({ beitraege, termine, sponsoren }) {
   return (
     <>
-  
-    <h1 className='text-5xl bg-amber-300
-    pb-3 pt-3 text-center'>NEWS</h1>
-    <div style={{width: "90%"}}className=" mx-auto md:justify-between md:flex">
+      <h1
+        className="text-3xl font-bold italic bg-amber-300
+         pt-3 pb-3 text-center"
+      >
+        NEWS
+      </h1>
+      <div
+        style={{ width: '90%' }}
+        className=" mx-auto md:justify-between md:flex"
+      >
 
-      
-    
-      <div className='pt-3 md:pr-3'>
-        {beitraege.map(beitrag => { 
-          return( 
-            <BeitragComponent
-            title={beitrag.title}
-            date={beitrag.date}
-            description={beitrag.description.substring(0, 200)}
-            image={beitrag.image}
-            slug={beitrag.slug}
-          />
-          )
-        })}
-      
+      <div
+      >
+         <div
+          style={{ width: '90%' }}
+          className="mx-auto pt-3 grid grid-cols-2 gap-4"
+        >
+
+          {beitraege.map((beitrag) => {
+            return (
+              <div className='max-h-90'>
+
+              <BeitragComponentSmall
+                title={beitrag.title}
+                date={beitrag.date}
+                description={beitrag.description.substring(0, 200)}
+                image={beitrag.image}
+                slug={beitrag.slug}
+              />
+              
+</div>
+            )
+          })}
+        </div>
+
       </div>
-   
-    </div>
+      <div>
+      <InfoBarRight termine={termine} sponsoren={sponsoren} />
+
+      </div>
+      </div>
+
     </>
   )
 }
@@ -82,23 +98,33 @@ export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
       query beitrag {
-        beitraege (last: 10) {
+        beitraege(last: 10) {
           id
           title
           slug
           description
           image
-        }   
+        }
+        sponsoren {
+          id
+          name
+          image
+          slug
+        }
+        termine(last: 3) {
+          eventTitle
+          dateAndTime
+          location
+        }
       }
     `,
   })
 
-  
-
   return {
     props: {
       beitraege: data.beitraege,
-    
+      termine: data.termine, 
+      sponsoren: data.sponsoren,
     },
   }
 }

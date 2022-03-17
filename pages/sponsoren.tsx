@@ -38,7 +38,6 @@ interface IBeitraege {
 const endpoint =
   'https://api-eu-central-1.graphcms.com/v2/cl0874wb42pah01xr1jnmabfu/master'
 
-
 const client = new ApolloClient({
   uri: endpoint,
   cache: new InMemoryCache(),
@@ -49,24 +48,34 @@ console.log(client)
 export default function alleSponsoren({ sponsoren }) {
   return (
     <>
-  
-    <h1 className='text-5xl bg-amber-300
-    pb-3 pt-3 text-center'>SPONSOREN</h1>
-    <div style={{width: "90%"}}className=" mx-auto md:justify-between">
+      <div className="bg-gray-900">
+        <h1
+          className="text-3xl font-bold italic bg-amber-300
+     pt-3 pb-3 text-center"
+        >
+          SPONSOREN
+        </h1>
 
-      {sponsoren.map(sponsor => {
-        return( 
-          <div key={sponsor.name} className="w-4/5 mx-auto flex justify-center border-2 mt-3">
-            <img src={sponsor.image} alt={sponsor.name} />
-          </div>
-        )
-       } ) }
-        
-      
-
-    
-    
-    </div>
+        <div
+          style={{ width: '90%' }}
+          className="mx-auto pt-3 grid grid-cols-2 gap-4"
+        >
+          {sponsoren.map((sponsor) => {
+            return (
+              <div
+                key={sponsor.name}
+                className="w-full mx-auto flex justify-center bg-white border-2 mt-3"
+              >
+                <img
+                  src={sponsor.image}
+                  alt={sponsor.name}
+                  className="w-2/3 bg-white"
+                />
+              </div>
+            )
+          })}
+        </div>
+      </div>
     </>
   )
 }
