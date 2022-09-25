@@ -1,6 +1,8 @@
+/* eslint-disable react/react-in-jsx-scope */
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import Layout from '../components/layout'
+import Script from 'next/script'
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,12 +10,15 @@ import {
   useQuery,
   gql,
 } from '@apollo/client'
+import Layout from '../components/layout'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
   )
 }
 
