@@ -114,3 +114,11 @@
     flex-direction: column;
   }
 }
+
+.hb-embed__title {
+  color: #0070f3;
+}
+
+.hb-embed__title {
+  text-decoration: dashed;
+}

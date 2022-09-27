@@ -18,3 +18,39 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@media screen and (min-width: 900px) {
+  .hb-embed__title {
+    color: black;
+    font-size: 30px !important;
+  }
+  .hb-embed__title-container {
+    border-bottom: 2px solid #facc14 !important;
+  }
+
+  .hb-embed__schedule
+    .hb-embed__schedule-list
+    .hb-embed__schedule-list-grouped-item
+    .hb-embed__schedule-list-item-date {
+    color: black !important;
+  }
+
+  .hb-embed a {
+    color: black !important;
+  }
+
+  .hb-embed__post {
+    background-color: #facc14 !important;
+    color: black !important;
+    font-weight: bold;
+  }
+
+  .hb-embed__btn {
+    background-color: #facc14 !important;
+    border: #facc14 !important;
+  }
+
+  .hb-embed__btn-box {
+    margin-top: 16px;
+  }
+}
