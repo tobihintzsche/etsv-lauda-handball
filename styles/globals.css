@@ -25,7 +25,7 @@ a {
     font-size: 30px !important;
   }
   .hb-embed__title-container {
-    border-bottom: 2px solid #facc14 !important;
+    @apply border-b-primary !important;
   }
 
   .hb-embed__schedule
@@ -40,14 +40,18 @@ a {
   }
 
   .hb-embed__post {
-    background-color: #facc14 !important;
+    @apply bg-primary !important;
     color: black !important;
     font-weight: bold;
   }
 
   .hb-embed__btn {
-    background-color: #facc14 !important;
+    @apply bg-primary !important;
     border: #facc14 !important;
+  }
+
+  .hb-embed__table thead th {
+    @apply border-b-primary !important;
   }
 
   .hb-embed__btn-box {

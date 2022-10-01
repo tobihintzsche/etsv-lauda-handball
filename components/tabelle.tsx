@@ -22,7 +22,9 @@ export default function Tabelle() {
       `,
         }}
       />
-      <div id="handball-tabelle" />
+      <div className="w-[500px]">
+        <div id="handball-tabelle" />
+      </div>
     </>
   )
 }

@@ -20,7 +20,9 @@ export default function Spielplan() {
 `,
         }}
       />
-      <div id="handball-spielplan" />
+      <div className="w-[500px]">
+        <div id="handball-spielplan" />
+      </div>
     </>
   )
 }
