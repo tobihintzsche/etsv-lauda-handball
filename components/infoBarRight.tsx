@@ -40,8 +40,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 })
 
-console.log(client)
-
 export default function InfoBarRight({ termine, sponsoren }) {
   return (
     <>

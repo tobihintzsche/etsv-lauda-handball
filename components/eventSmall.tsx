@@ -20,13 +20,6 @@ const EventSmall = ({ eventTitle, dateAndTime, location }: IProps) => {
   minutes = minutes - days * 24 * 60 - hours * 60
   seconds = seconds - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60
 
-  console.log(dateNow)
-  console.log(dateFuture)
-
-  console.log(hours)
-  console.log(minutes)
-  console.log(seconds)
-
   return (
     <main>
       <div className="rounded-md border-2 border-yellow  md:w-full mt-3 pt-3 pb-3 pr-3 pl-3 mx-auto flex md:flex-col justify-between">

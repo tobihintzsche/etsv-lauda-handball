@@ -43,7 +43,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 })
 
-console.log(client)
 
 export default function herren({ beitraege, termine, sponsoren }) {
   return (

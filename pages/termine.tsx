@@ -69,8 +69,6 @@ export async function getStaticProps() {
     `,
   })
 
-  //console.log(data)
-
   return {
     props: {
       termine: data.termine.slice(0, 4),
