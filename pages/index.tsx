@@ -48,10 +48,7 @@ const client = new ApolloClient({
 
 export default function home({ beitraege, termine, sponsoren }) {
   return (
-    <div
-      style={{ width: '90%' }}
-      className=" mx-auto md:justify-between md:flex"
-    >
+    <div className="mx-8 md:justify-between md:flex">
       <div className="pt-3 md:pr-3">
         <BeitragComponent
           title={beitraege[2].title}

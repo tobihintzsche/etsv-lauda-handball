@@ -1,5 +1,5 @@
 import Footer from './footer'
-import { Navbar } from './Navbar'
+import { Navigation } from './Navbar/Navigation'
 
 type DashboardLayoutProps = {
   children: React.ReactNode
@@ -8,7 +8,7 @@ type DashboardLayoutProps = {
 export default function Layout({ children }: DashboardLayoutProps) {
   return (
     <>
-      <Navbar />
+      <Navigation />
       <main>{children}</main>
       <Footer />
     </>
