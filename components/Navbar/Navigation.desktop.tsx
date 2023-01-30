@@ -33,7 +33,7 @@ export const DesktopNavigation = () => {
   }
 
   return (
-    <div className="flex justify-between bg-yellow-400 p-3 ">
+    <div className="flex justify-between bg-yellow-400 px-10 py-2">
       <div>
         <Link href="/">
           <a className="inline-flex items-center p-2 ">
@@ -54,7 +54,7 @@ export const DesktopNavigation = () => {
           >
             <a
               href={item.link.url}
-              className="mr-4 text-xl font-bold"
+              className="mr-4 text-lg font-bold"
               onClick={() => toggleSubNav(item.link.url)}
             >
               {item.link.text.toUpperCase()}
@@ -62,14 +62,18 @@ export const DesktopNavigation = () => {
             <div
               className={
                 hoveredNavItem === item.link.url
-                  ? 'absolute bg-yellow-400 flex pt-2 flex-col gap-2'
+                  ? 'absolute bg-yellow-400 flex pt-2 pb-2 flex-col gap-2'
                   : 'hidden'
               }
             >
               {item.subNav &&
                 item.subNav.map((subNav, index) => (
-                  <a key={index} href={subNav.url} className="mr-4">
-                    {subNav.text}
+                  <a
+                    key={index}
+                    href={subNav.url}
+                    className="mr-4 pl-4 text-md"
+                  >
+                    {subNav.text.toUpperCase()}
                   </a>
                 ))}
             </div>
