@@ -19,6 +19,30 @@ a {
   box-sizing: border-box;
 }
 
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  margin-left: -8px;
+  @apply bg-black;
+  transition: transform 0.25s ease-out;
+  border-radius: 2px;
+}
+
+.hover-underline-animation:hover:after,
+.hover-underline-animation.open:after {
+  transform: scaleX(1);
+}
+
 @media screen and (min-width: 900px) {
   .hb-embed__title {
     color: black;

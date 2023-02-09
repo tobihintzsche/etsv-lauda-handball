@@ -9,7 +9,7 @@ import navbarConfig from './navigationConfig'
 
 export const MobileNavigation = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [activeSubNav, setActiveSubNav] = useState('')
+  const [activesubNavigation, setActivesubNavigation] = useState('')
   const [hoveredNavItem, setHoveredNavItem] = useState('')
 
   const toggleNavbar = () => {
@@ -21,8 +21,8 @@ export const MobileNavigation = () => {
     setIsOpen(false)
   }
 
-  const toggleSubNav = (id) => {
-    setActiveSubNav(id === activeSubNav ? '' : id)
+  const togglesubNavigation = (id) => {
+    setActivesubNavigation(id === activesubNavigation ? '' : id)
   }
 
   const onMouseEnter = (id) => {
@@ -50,33 +50,35 @@ export const MobileNavigation = () => {
       </div>
 
       <div className={`w-full ${isOpen ? 'flex flex-col gap-2' : 'hidden'}`}>
-        {navbarConfig.navbarItem.map((item, index) => (
+        {navbarConfig.navigation.map((item, index) => (
           <div
             className="w-max"
             key={index}
-            onMouseEnter={() => item.subNav && onMouseEnter(item.link.url)}
+            onMouseEnter={() =>
+              item.subNavigation && onMouseEnter(item.link.href)
+            }
             onMouseLeave={onMouseLeave}
           >
             <a
-              href={item.link.url}
+              href={item.link.href}
               className="mr-4 hover:text-yellow-900 w-max text-lg"
-              onClick={() => toggleSubNav(item.link.url)}
+              onClick={() => togglesubNavigation(item.link.href)}
             >
-              {item.link.text.toUpperCase()}
+              {item.link.title.toUpperCase()}
             </a>
-            {hoveredNavItem === item.link.url && (
+            {hoveredNavItem === item.link.href && (
               <div
                 className="
                       bg-yellow-400 flex pt-2 flex-col gap-2"
               >
-                {item.subNav &&
-                  item.subNav.map((subNav, index) => (
+                {item.subNavigation &&
+                  item.subNavigation.map((subNavigation, index) => (
                     <a
                       key={index}
-                      href={subNav.url}
+                      href={subNavigation.href}
                       className="mr-4 w-max text-yellow-900 text-lg"
                     >
-                      {subNav.text.toUpperCase()}
+                      {subNavigation.title.toUpperCase()}
                     </a>
                   ))}
               </div>

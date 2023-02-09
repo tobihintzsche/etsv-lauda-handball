@@ -1,78 +1,78 @@
-interface NavbarLink {
-  link: NavbarSingleLink
-  subNav?: NavbarSingleLink[]
+export interface NavigationItem {
+  link: NavigationSingleLink
+  subNavigation?: NavigationSingleLink[]
 }
 
-interface NavbarSingleLink {
-  text: string
-  url: string
+export interface NavigationSingleLink {
+  title: string
+  href: string
 }
 
-export interface NavbarConfig {
-  navbarItem: NavbarLink[]
+export interface NavigationConfig {
+  navigation: NavigationItem[]
 }
 
-const navbarConfig: NavbarConfig = {
-  navbarItem: [
+const navigationConfig: NavigationConfig = {
+  navigation: [
     {
       link: {
-        text: 'Home',
-        url: '/home',
+        title: 'Home',
+        href: '/home',
       },
     },
     {
       link: {
-        text: 'About',
-        url: '/about',
+        title: 'About',
+        href: '/about',
       },
     },
     {
       link: {
-        text: 'Services',
-        url: '/services',
+        title: 'Services',
+        href: '/services',
       },
-      subNav: [
+      subNavigation: [
         {
-          text: 'Consulting',
-          url: '/services/consulting',
+          title: 'Consulting',
+          href: '/services/consulting',
         },
         {
-          text: 'Training',
-          url: '/services/training',
+          title: 'Training',
+          href: '/services/training',
         },
         {
-          text: 'Support',
-          url: '/services/support',
+          title: 'Support',
+          href: '/services/support',
         },
       ],
     },
     {
       link: {
-        text: 'Contact',
-        url: '/contact',
+        title: 'Contact',
+        href: '/contact',
       },
     },
     {
       link: {
-        text: 'test',
-        url: '/test',
+        title: 'test',
+        href: '/test',
       },
-      subNav: [
+      subNavigation: [
         {
-          text: 'test0',
-          url: '/services/test0',
+          title: 'test0',
+          href: '/services/test0',
         },
         {
-          text: 'test1',
-          url: '/services/test1',
+          title: 'test1',
+          href: '/services/test1',
         },
         {
-          text: 'test2',
-          url: '/services/test2',
+          title: 'test2',
+          href: '/services/test2',
         },
       ],
     },
   ],
 }
 
-export default navbarConfig
+export default navigationConfig

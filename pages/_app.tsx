@@ -11,13 +11,16 @@ import {
   gql,
 } from '@apollo/client'
 import Layout from '../components/layout'
+import { LayoutContext, LayoutContextProvider } from '../LayoutContext'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <LayoutContextProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </LayoutContextProvider>
     </>
   )
 }

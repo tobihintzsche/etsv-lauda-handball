@@ -8,9 +8,11 @@ type DashboardLayoutProps = {
 export default function Layout({ children }: DashboardLayoutProps) {
   return (
     <>
-      <div className="max-w-screen-2xl">
+      <div className="">
         <Navigation />
-        <main>{children}</main>
+        <div className="max-w-screen-2xl mx-auto">
+          <main>{children}</main>
+        </div>
         <Footer />
       </div>
     </>
