@@ -12,8 +12,10 @@ export const SubNavigation: React.FC<SubNavigationProps> = ({
   return (
     <>
       <div className="h-10 flex w-full justify-between">
-        {subNavigation.map((element) => (
-          <span className="text-lg">{element.title}</span>
+        {subNavigation.map((element, index) => (
+          <span className="text-2xl font-medium" key={index}>
+            {element.title}
+          </span>
         ))}
       </div>
     </>

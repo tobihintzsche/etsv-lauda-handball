@@ -48,7 +48,7 @@ function NavigationItem({
                   event.preventDefault()
                 }
               }}
-              className="text-xl"
+              className="font-medium text-3xl"
             >
               {navigationItem.link.title}
             </button>
@@ -64,7 +64,6 @@ function NavigationItem({
               onMouseEnter={() => setOpenSubNav(-1)}
             ></div>
             <div
-              data-testid="subNavigation"
               className={classNames(
                 'absolute left-0 w-full z-30 py-6 opacity-80 bg-yellow-400 duration-300 flex justify-between items-center elevation-bottom',
                 openSubNav !== currentNavItem && 'hidden'
