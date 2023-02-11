@@ -23,6 +23,9 @@ import InfoBarRight from '../components/infoBarRight'
 import TestTable from '../components/spielplan'
 import Spielplan from '../components/spielplan'
 import Tabelle from '../components/tabelle'
+import InformationElement from '../components/TeamInformationElement'
+import TeamInformationElement from '../components/TeamInformationElement'
+import TeamsOverview from '../components/TeamsOverview'
 
 interface IBeitrag {
   id: string
@@ -46,45 +49,26 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 })
 
-export default function home({ beitraege, termine, sponsoren }) {
+const Home = ({ beitraege, termine, sponsoren }) => {
   return (
-    <div className="md:justify-between md:flex">
-      <div className="pt-3 md:pr-3">
-        <BeitragComponent
-          title={beitraege[2].title}
-          date={beitraege[2].date}
-          description={beitraege[2].description.substring(0, 200)}
-          image={beitraege[2].image}
-          slug={beitraege[0].slug}
-        />
+    <div>
+      <div className="flex mt-4 h-max gap-10">
+        <div className="flex-2">
+          <BeitragComponent
+            title={beitraege[2].title}
+            date={beitraege[2].date}
+            description={beitraege[2].description.substring(0, 200)}
+            image={beitraege[2].image}
+            slug={beitraege[0].slug}
+          />
+        </div>
 
-        <Spielplan />
-        <Tabelle />
-        <div className="flex flex-col md:flex-row  justify-between mx-auto">
-          <div className="md:mr-3">
-            <BeitragComponentSmall
-              title={beitraege[1].title}
-              date={beitraege[1].date}
-              description={beitraege[1].description.substring(0, 200)}
-              image={beitraege[1].image}
-              slug={beitraege[1].slug}
-            />
-          </div>
-          <div className="md:ml-3">
-            <BeitragComponentSmall
-              title={beitraege[0].title}
-              date={beitraege[0].date}
-              description={beitraege[0].description.substring(0, 200)}
-              image={beitraege[0].image}
-              slug={beitraege[0].slug}
-            />
-          </div>
+        <div className="flex-1">
+          <Tabelle />
         </div>
       </div>
 
-      <div>
-        <InfoBarRight termine={termine} sponsoren={sponsoren} />
-      </div>
+      <div className="flex gap-10 mb-4 mt-4"></div>
     </div>
   )
 }
@@ -123,3 +107,5 @@ export async function getStaticProps() {
     },
   }
 }
+
+export default Home

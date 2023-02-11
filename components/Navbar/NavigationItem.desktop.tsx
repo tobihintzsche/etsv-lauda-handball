@@ -65,15 +65,14 @@ function NavigationItem({
             ></div>
             <div
               className={classNames(
-                'absolute left-0 w-full z-30 py-6 opacity-80 bg-yellow-400 duration-300 flex justify-between items-center elevation-bottom',
+                'absolute left-0 w-full z-30 py-6 opacity-80 bg-yellow-400 duration-300 elevation-bottom',
                 openSubNav !== currentNavItem && 'hidden'
               )}
             >
-              <div
-                className="max-w-screen-2xl mx-auto w-full
-              "
-              >
-                <SubNavigation subNavigation={navigationItem.subNavigation} />
+              <div className="max-w-screen-2xl mx-auto flex justify-center">
+                <div className="flex justify-between w-full lg:mx-10 md:mx-8 sm:mx-6">
+                  <SubNavigation subNavigation={navigationItem.subNavigation} />
+                </div>
               </div>
             </div>
           </div>
