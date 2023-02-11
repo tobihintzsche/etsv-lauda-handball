@@ -2,9 +2,9 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <>
-      <div>
-        <footer className="text-center bg-gray-900 text-white">
+    <div className=" bg-gray-900">
+      <div className="max-w-screen-2xl mx-auto">
+        <footer className="text-center text-white">
           <div className=" px-6 pt-6">
             <div className="flex justify-center mb-6">
               <a
@@ -79,16 +79,13 @@ export default function Footer() {
                 Kann man wieder mit Auth0 oder sowas umsetzen, siehe frühere Projekte */}
           <button>Anmelden / Ausloggen</button>
 
-          <div
-            className="text-center p-4"
-            style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
-          >
+          <div className="text-center p-4">
             <a className="text-whitehite" href="/impressum">
               © 2022 Copyright: ETSV Lauda Handball
             </a>
           </div>
         </footer>
       </div>
-    </>
+    </div>
   )
 }

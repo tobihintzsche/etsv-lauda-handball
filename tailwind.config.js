@@ -9,7 +9,11 @@ module.exports = {
       colors: {
         primary: '#fcd34d',
       },
+      fontFamily: {
+        sans: ['Teko', 'sans-serif'],
+      },
     },
   },
+  variants: {},
   plugins: [],
 }

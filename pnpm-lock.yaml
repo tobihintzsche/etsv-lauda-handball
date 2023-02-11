@@ -7,6 +7,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.12.1
   '@typescript-eslint/parser': ^5.12.1
   autoprefixer: ^10.4.2
+  classnames: ^2.3.2
   eslint: ^8.9.0
   eslint-config-airbnb: ^19.0.4
   eslint-config-next: 12.1.0
@@ -30,6 +31,7 @@ specifiers:
 
 dependencies:
   '@apollo/client': 3.7.5_4acpsgwrblrf7yma4ztoevvkgq
+  classnames: 2.3.2
   graphql: 16.6.0
   graphql-request: 4.3.0_graphql@16.6.0
   next: 12.1.0_sfoxds7t5ydpegc3knd667wn6m
@@ -797,6 +799,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /classnames/2.3.2:
+    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
+    dev: false
 
   /color-convert/2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}

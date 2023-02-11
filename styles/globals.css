@@ -3,13 +3,6 @@
 @tailwind utilities;
 
 html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
 a {
   color: inherit;
   text-decoration: none;
@@ -17,6 +10,34 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+/* .teko {
+  font-family: 'Teko';
+} */
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  margin-left: -8px;
+  @apply bg-black;
+  transition: transform 0.25s ease-out;
+  border-radius: 2px;
+}
+
+.hover-underline-animation:hover:after,
+.hover-underline-animation.open:after {
+  transform: scaleX(1);
 }
 
 @media screen and (min-width: 900px) {
@@ -33,6 +54,7 @@ a {
     .hb-embed__schedule-list-grouped-item
     .hb-embed__schedule-list-item-date {
     color: black !important;
+    font-size: large;
   }
 
   .hb-embed a {
@@ -43,6 +65,7 @@ a {
     @apply bg-primary !important;
     color: black !important;
     font-weight: bold;
+    font-size: large;
   }
 
   .hb-embed__btn {
