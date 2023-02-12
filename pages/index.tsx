@@ -26,6 +26,8 @@ import Tabelle from '../components/tabelle'
 import InformationElement from '../components/TeamInformationElement'
 import TeamInformationElement from '../components/TeamInformationElement'
 import TeamsOverview from '../components/TeamsOverview'
+import { useDeviceType } from '../components/Navbar/useDeviceType'
+import classNames from 'classnames'
 
 interface IBeitrag {
   id: string
@@ -50,25 +52,61 @@ const client = new ApolloClient({
 })
 
 const Home = ({ beitraege, termine, sponsoren }) => {
+  const deviceType = useDeviceType()
+
   return (
-    <div>
-      <div className="flex mt-4 h-max gap-10">
-        <div className="flex-2">
+    <div
+      className={classNames(
+        'flex mt-4 h-max gap-10',
+        deviceType === 'desktop' ? 'flex-row' : 'flex-col'
+      )}
+    >
+      <div className="flex-2">
+        <div className="flex flex-col gap-4">
           <BeitragComponent
             title={beitraege[2].title}
             date={beitraege[2].date}
-            description={beitraege[2].description.substring(0, 200)}
+            description={beitraege[2].description}
             image={beitraege[2].image}
             slug={beitraege[0].slug}
           />
-        </div>
+          <div
+            className={classNames(
+              'flex gap-4',
+              deviceType === 'mobile' ? 'flex-col' : 'flex-row'
+            )}
+          >
+            <BeitragComponentSmall
+              title={beitraege[2].title}
+              date={beitraege[2].date}
+              description={beitraege[2].description}
+              image={beitraege[2].image}
+              slug={beitraege[0].slug}
+            />
+            <BeitragComponentSmall
+              title={beitraege[2].title}
+              date={beitraege[2].date}
+              description={beitraege[2].description}
+              image={beitraege[2].image}
+              slug={beitraege[0].slug}
+            />
+          </div>
 
-        <div className="flex-1">
-          <Tabelle />
+          {deviceType === 'desktop' && <TeamInformationElement />}
         </div>
       </div>
 
-      <div className="flex gap-10 mb-4 mt-4"></div>
+      <div
+        className={classNames(
+          'flex flex-1 gap-8',
+          deviceType === 'tablet' ? 'flex-row' : 'flex-col'
+        )}
+      >
+        <Tabelle />
+        <Spielplan />
+      </div>
+
+      {deviceType !== 'desktop' && <TeamInformationElement />}
     </div>
   )
 }

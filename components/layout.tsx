@@ -19,7 +19,7 @@ export default function Layout({ children }: DashboardLayoutProps) {
         <Navigation />
 
         <div className="max-w-screen-2xl mx-auto flex justify-center">
-          <div className="flex justify-between w-full lg:mx-10 md:mx-8 sm:mx-6">
+          <div className="flex justify-between w-full lg:mx-10 md:mx-8 mx-4">
             <main className="">{children}</main>
           </div>
         </div>

@@ -23,47 +23,47 @@ const navigationConfig: NavigationConfig = {
     {
       link: {
         title: 'Herren',
-        href: '/home',
+        href: '/teams/Herren',
       },
     },
     {
       link: {
         title: 'Jugend',
-        href: '/test',
+        href: '/teams/jugend',
       },
       subNavigation: [
         {
           title: 'B-Jugend (m)',
-          href: '/services/test0',
+          href: '/teams/b-jugend',
         },
         {
           title: 'C-Jugend (m)',
-          href: '/services/test1',
+          href: '/teams/c-jugend',
         },
         {
           title: 'D-Jugend (m)',
-          href: '/services/test2',
+          href: '/teams/d-jugend',
         },
         {
           title: 'E-Jugend',
-          href: '/services/test2',
+          href: '/teams/e-jugend',
         },
         {
           title: 'Bambinis',
-          href: '/services/test2',
+          href: '/teams/bambini',
         },
       ],
     },
     {
       link: {
         title: 'News',
-        href: '/services',
+        href: '/news',
       },
     },
     {
       link: {
         title: 'Anfahrt',
-        href: '/contact',
+        href: '/anfahrt',
       },
     },
   ],

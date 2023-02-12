@@ -20,7 +20,8 @@ export default function Spielplan() {
 `,
         }}
       />
-      <div className="w-[500px]">
+      <div className="w-full">
+        <h1 className="text-3xl mb-4">Spielplan Herren Kreisliga A</h1>
         <div id="handball-spielplan" />
       </div>
     </>

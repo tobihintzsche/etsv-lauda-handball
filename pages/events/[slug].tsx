@@ -37,7 +37,6 @@ const client = new GraphQLClient(
 )
 
 export default function Beitrag({ beitrag, termine, sponsoren }) {
-
   const markdown = beitrag.description
 
   return (
@@ -54,8 +53,8 @@ export default function Beitrag({ beitrag, termine, sponsoren }) {
       >
         <div className="pt-3 md:pr-3">
           <h2 className="pb-2 text-slate-400">{beitrag.date}</h2>
-          <ReactMarkdown children={markdown} /> 
-          
+          <ReactMarkdown children={markdown} />
+
           <img className="pt-3 pb-2 " src={beitrag.image} alt={beitrag.title} />
           <h4 className="pb-3 text-slate-400"> Foto: {beitrag.title} </h4>
         </div>

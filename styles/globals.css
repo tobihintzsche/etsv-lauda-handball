@@ -40,7 +40,7 @@ a {
   transform: scaleX(1);
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 768px) {
   .hb-embed__title {
     color: black;
   }
@@ -53,11 +53,27 @@ a {
     .hb-embed__schedule-list-grouped-item
     .hb-embed__schedule-list-item-date {
     color: black !important;
-    font-size: large;
   }
 
-  .hb-embed__table {
-    font-size: large;
+  .hb-embed {
+    font-size: larger !important;
+  }
+
+  .hb-embed__schedule
+    .hb-embed__schedule-list
+    .hb-embed__schedule-list-grouped-item
+    .hb-embed__schedule-list-item
+    .hb-embed__schedule-list-item-content {
+    padding: 4px !important;
+  }
+
+  .hb-embed__schedule-list-item-score {
+    background-color: #facc14 !important;
+    color: black !important;
+  }
+
+  .hb-embed__table .hb-embed__table-numeric {
+    font-weight: 500 !important;
   }
 
   .hb-embed a {

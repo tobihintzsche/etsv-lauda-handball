@@ -22,7 +22,8 @@ export default function Tabelle() {
       `,
         }}
       />
-      <div className="w-[500px]">
+      <div className="w-full">
+        <h1 className="text-3xl mb-4">Tabelle Herren Kreisliga A</h1>
         <div id="handball-tabelle" />
       </div>
     </>

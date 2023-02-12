@@ -12,6 +12,10 @@ module.exports = {
       fontFamily: {
         sans: ['Teko', 'sans-serif'],
       },
+      flex: {
+        2: '2',
+        3: '3',
+      },
     },
   },
   variants: {},
