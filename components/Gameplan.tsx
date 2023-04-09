@@ -1,6 +1,11 @@
 import Script from 'next/script'
+import { Team } from '../pages/teams/[slug]'
 
-export default function Spielplan() {
+export interface GameplanProps {
+  team: Team
+}
+
+export const Gameplan: React.FC<GameplanProps> = ({ team }) => {
   return (
     <>
       <Script
@@ -11,17 +16,14 @@ export default function Spielplan() {
       />
       <Script
         dangerouslySetInnerHTML={{
-          __html: `
-    _hb({
-      widget: 'spielplan',
-      teamId: 'handball4all.wuerttemberg.899376',
-      container: 'handball-spielplan'
-      })
-`,
+          __html: team.handball_net_configuration.gameplan_script.replace(
+            /<\/?script>/gi,
+            ''
+          ),
         }}
       />
       <div className="w-full">
-        <h1 className="text-3xl mb-4">Spielplan Herren Kreisliga A</h1>
+        <h1 className="text-3xl mb-4">{`${team.name} Spielplan`}</h1>
         <div id="handball-spielplan" />
       </div>
     </>

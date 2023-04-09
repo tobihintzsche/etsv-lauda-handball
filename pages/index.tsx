@@ -1,149 +1,172 @@
-import React, { useState } from 'react'
-import Image from 'next/image'
-import { GetStaticProps, GetStaticPaths } from 'next'
-import useSWR from 'swr'
-import { serialize } from 'next-mdx-remote/serialize'
-import { MDXRemote } from 'next-mdx-remote'
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  useQuery,
-  gql,
-} from '@apollo/client'
-import { renderToHTML } from 'next/dist/server/render'
-import Script from 'next/script'
-import Beitrag from './events/[slug]'
-import BeitragComponent from '../components/beitrag'
-import EventSmall from '../components/eventSmall'
-import SponsorSmall from '../components/sponsorSmall copy'
-import sponsoren from './sponsoren'
-import BeitragComponentSmall from '../components/beitragSmall'
-import InfoBarRight from '../components/infoBarRight'
-import TestTable from '../components/spielplan'
-import Spielplan from '../components/spielplan'
-import Tabelle from '../components/tabelle'
-import InformationElement from '../components/TeamInformationElement'
-import TeamInformationElement from '../components/TeamInformationElement'
-import TeamsOverview from '../components/TeamsOverview'
-import { useDeviceType } from '../components/Navbar/useDeviceType'
-import classNames from 'classnames'
+import { gql } from '@apollo/client'
+import client from '../apollo-client'
+import ClubInformation from '../components/ClubInformation'
+import { Navigation } from '../components/Navbar/Navigation'
+import { TeamNews, TeamNewsComponent } from '../components/TeamNews'
+import { Team } from './teams/[slug]'
 
-interface IBeitrag {
-  id: string
-  slug: string
-  title: string
-  date: string
-  description: string
-  image: string
-  zuweisung: string
+const SINGLE_TEAM_QUERY = gql`
+  query SingleTeamRequest($slug: String!) {
+    team(where: { slug: $slug }) {
+      name
+      gender
+      practice_times
+      coaches
+      handball_net_configuration {
+        gameplan_script
+        table_script
+      }
+      slug
+      social_media {
+        instagram
+        facebook
+      }
+      team_picture {
+        url
+      }
+      teamsNews {
+        id
+      }
+    }
+  }
+`
+
+const GET_HOME_TEAM = gql`
+  query HomeRequest {
+    homes {
+      team {
+        id
+        slug
+      }
+    }
+  }
+`
+
+export const GET_TEAM_NEWS = gql`
+  query TeamNewsRequest($id: ID!) {
+    teamNews(where: { id: $id }) {
+      id
+      slug
+      title
+      description
+      picture {
+        url
+      }
+    }
+  }
+`
+
+const GET_CLUBS = gql`
+  query ClubsRequest {
+    clubs {
+      description
+      id
+      name
+      logo {
+        url
+      }
+      picture {
+        url
+      }
+      home_description
+      subline
+    }
+  }
+`
+
+interface HomePageProps {
+  team: Team
+  latestHomeTeamNews: TeamNews
+  club: Club
 }
 
-interface IBeitraege {
-  beitrag: IBeitrag[]
-}
-
-const endpoint =
-  'https://api-eu-central-1.graphcms.com/v2/cl0874wb42pah01xr1jnmabfu/master'
-
-const client = new ApolloClient({
-  uri: endpoint,
-  cache: new InMemoryCache(),
-})
-
-const Home = ({ beitraege, termine, sponsoren }) => {
-  const deviceType = useDeviceType()
+export default function HomePage({
+  latestHomeTeamNews,
+  team,
+  club,
+}: HomePageProps) {
+  console.log(club)
 
   return (
-    <div
-      className={classNames(
-        'flex mt-4 h-max gap-10',
-        deviceType === 'desktop' ? 'flex-row' : 'flex-col'
-      )}
-    >
-      <div className="flex-2">
-        <div className="flex flex-col gap-4">
-          <BeitragComponent
-            title={beitraege[2].title}
-            date={beitraege[2].date}
-            description={beitraege[2].description}
-            image={beitraege[2].image}
-            slug={beitraege[0].slug}
-          />
-          <div
-            className={classNames(
-              'flex gap-4',
-              deviceType === 'mobile' ? 'flex-col' : 'flex-row'
-            )}
-          >
-            <BeitragComponentSmall
-              title={beitraege[2].title}
-              date={beitraege[2].date}
-              description={beitraege[2].description}
-              image={beitraege[2].image}
-              slug={beitraege[0].slug}
-            />
-            <BeitragComponentSmall
-              title={beitraege[2].title}
-              date={beitraege[2].date}
-              description={beitraege[2].description}
-              image={beitraege[2].image}
-              slug={beitraege[0].slug}
-            />
-          </div>
-
-          {deviceType === 'desktop' && <TeamInformationElement />}
+    <div className="py-10 flex flex-col">
+      <div className="flex flex-col lg:flex-row gap-4">
+        <div>
+          <TeamNewsComponent teamNews={latestHomeTeamNews} />
+        </div>
+        <div>
+          <TeamNewsComponent teamNews={latestHomeTeamNews} />
         </div>
       </div>
-
-      <div
-        className={classNames(
-          'flex flex-1 gap-8',
-          deviceType === 'tablet' ? 'flex-row' : 'flex-col'
-        )}
-      >
-        <Tabelle />
-        <Spielplan />
+      <div className="pt-10">
+        <ClubInformation club={club} />
       </div>
-
-      {deviceType !== 'desktop' && <TeamInformationElement />}
     </div>
   )
 }
-
-export async function getStaticProps() {
-  const { data } = await client.query({
-    query: gql`
-      query termin {
-        termine(where: { zuweisung: Herren }, last: 3) {
-          eventTitle
-          dateAndTime
-          location
-        }
-        beitraege(last: 3) {
-          id
-          title
-          slug
-          description
-          image
-        }
-        sponsoren {
-          id
-          name
-          image
-          slug
-        }
-      }
-    `,
-  })
-
-  return {
-    props: {
-      beitraege: data.beitraege.slice(0, 4),
-      termine: data.termine.slice(0, 4),
-      sponsoren: data.sponsoren.slice(0, 4),
-    },
+export interface TeamNews {
+  id: string
+  slug: string | null
+  title: string
+  description: string
+  picture: {
+    url: string
   }
 }
 
-export default Home
+type ServerSideProps = {
+  props: {
+    latestHomeTeamNews: TeamNews
+    team: Team
+    club: Club
+  }
+}
+
+export interface Club {
+  description: string
+  id: string
+  name: string
+  logo: {
+    url: string
+  }
+  picture: {
+    url: string
+  }
+  home_description: string
+  subline: string
+}
+
+export async function getServerSideProps(): Promise<ServerSideProps> {
+  const { data: homeRequestResponse } = await client.query({
+    query: GET_HOME_TEAM,
+  })
+
+  const teamSlug = homeRequestResponse.homes[0].team.slug
+
+  const id: string = 'clg6oq15nkopb0auhflp1wmrc'
+
+  const { data: teamRequestResponse } = await client.query({
+    query: SINGLE_TEAM_QUERY,
+    variables: { slug: teamSlug },
+  })
+
+  const latestTeamNewsId: string = teamRequestResponse.team.teamsNews[0].id
+
+  const { error, data: teamNewsResponse } = await client.query({
+    query: GET_TEAM_NEWS,
+    variables: { id: latestTeamNewsId },
+  })
+
+  const { data: clubResponse } = await client.query({
+    query: GET_CLUBS,
+  })
+
+  const club = clubResponse.clubs[0]
+
+  return {
+    props: {
+      latestHomeTeamNews: teamNewsResponse.teamNews,
+      team: teamRequestResponse.team,
+      club,
+    },
+  }
+}

@@ -5,25 +5,19 @@ import Banner from '/Users/tobiashintzsche/dev/etsv-lauda-handball/Banner.png'
 import BurgerMenu from '/Users/tobiashintzsche/dev/etsv-lauda-handball/BurgerMenu.svg'
 
 import Link from 'next/link'
-import navbarConfig from './navigationConfig'
+import { NavigationConfig, NavigationSingleLink } from './navigationConfig'
 import NavigationItem from './NavigationItem.desktop'
+import { SortedNavigationTeams } from './Navigation'
+import { title } from 'process'
+import DesktopNavigationItem from './NavigationItem.desktop'
 
-export const DesktopNavigation = () => {
-  const [activeSubNav, setActiveSubNav] = useState('')
-  const [hoveredNavItem, setHoveredNavItem] = useState('')
+interface DesktopNavigationProps {
+  navigationConfig: NavigationConfig
+}
 
-  const toggleSubNav = (id) => {
-    setActiveSubNav(id === activeSubNav ? '' : id)
-  }
-
-  const onMouseEnter = (id) => {
-    setHoveredNavItem(id)
-  }
-
-  const onMouseLeave = () => {
-    setHoveredNavItem('')
-  }
-
+export const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
+  navigationConfig,
+}) => {
   return (
     <div className="bg-yellow-400 py-2">
       <div className="max-w-screen-2xl mx-auto flex justify-center">
@@ -41,9 +35,9 @@ export const DesktopNavigation = () => {
 
           <div className="items-center inline-flex">
             <ul className="flex justify-end pt-3 gap-4 typo-medium">
-              {navbarConfig.navigation.map((item, index) => (
+              {navigationConfig.navigation.map((item, index) => (
                 <div key={index}>
-                  <NavigationItem
+                  <DesktopNavigationItem
                     navigationItem={item}
                     index={index}
                     isVisible={false}
@@ -57,35 +51,3 @@ export const DesktopNavigation = () => {
     </div>
   )
 }
-
-// <div
-//               key={index}
-//               onMouseEnter={() => item.subNav && onMouseEnter(item.link.url)}
-//               onMouseLeave={onMouseLeave}
-//             >
-//               <a
-//                 href={item.link.url}
-//                 className="mr-4 text-lg font-bold"
-//                 onClick={() => toggleSubNav(item.link.url)}
-//               >
-//                 {item.link.text.toUpperCase()}
-//               </a>
-//               <div
-//                 className={
-//                   hoveredNavItem === item.link.url
-//                     ? 'absolute bg-yellow-400 flex pt-2 pb-2 flex-col gap-2'
-//                     : 'hidden'
-//                 }
-//               >
-//                 {item.subNav &&
-//                   item.subNav.map((subNav, index) => (
-//                     <a
-//                       key={index}
-//                       href={subNav.url}
-//                       className="mr-4 pl-4 text-md"
-//                     >
-//                       {subNav.text.toUpperCase()}
-//                     </a>
-//                   ))}
-//               </div>
-//             </div>

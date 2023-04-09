@@ -10,7 +10,7 @@ module.exports = {
         primary: '#fcd34d',
       },
       fontFamily: {
-        sans: ['Teko', 'sans-serif'],
+        sans: ['Hammersmith One', 'sans-serif'],
       },
       flex: {
         2: '2',

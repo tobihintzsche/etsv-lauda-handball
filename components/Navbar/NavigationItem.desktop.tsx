@@ -11,7 +11,7 @@ interface NavigationItemProps {
   isVisible: boolean
 }
 
-function NavigationItem({
+function DesktopNavigationItem({
   navigationItem,
   index,
   isVisible,
@@ -65,7 +65,7 @@ function NavigationItem({
             ></div>
             <div
               className={classNames(
-                'absolute left-0 w-full z-30 py-6 opacity-80 bg-yellow-400 duration-300 elevation-bottom',
+                'absolute left-0 w-full z-30 py-6 bg-yellow-400 h-[250px] duration-300 elevation-bottom',
                 openSubNav !== currentNavItem && 'hidden'
               )}
             >
@@ -82,4 +82,4 @@ function NavigationItem({
   )
 }
 
-export default NavigationItem
+export default DesktopNavigationItem

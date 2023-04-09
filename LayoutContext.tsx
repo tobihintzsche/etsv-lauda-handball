@@ -1,5 +1,7 @@
+import { gql, useQuery } from '@apollo/client'
 import type { Dispatch, ReactNode, SetStateAction } from 'react'
 import React, { createContext, useContext, useState } from 'react'
+import { Team } from './pages/teams/[slug]'
 
 export interface LayoutContextValue {
   isHeaderExpanded: boolean

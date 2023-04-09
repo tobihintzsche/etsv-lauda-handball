@@ -1,6 +1,13 @@
 import Script from 'next/script'
+import { Team } from '../pages/teams/[slug]'
 
-export default function Tabelle() {
+export interface TableProps {
+  team: Team
+}
+
+export const Table: React.FC<TableProps> = ({ team }) => {
+  console.log(team.handball_net_configuration.table_script)
+
   return (
     <>
       <Script
@@ -13,17 +20,14 @@ export default function Tabelle() {
 
       <Script
         dangerouslySetInnerHTML={{
-          __html: `
-            _hb({
-              widget: 'tabelle',
-              teamId: 'handball4all.wuerttemberg.899376',
-              container: 'handball-tabelle'
-              })
-      `,
+          __html: team.handball_net_configuration.table_script.replace(
+            /<\/?script>/gi,
+            ''
+          ),
         }}
       />
       <div className="w-full">
-        <h1 className="text-3xl mb-4">Tabelle Herren Kreisliga A</h1>
+        <h1 className="text-3xl mb-4">{`${team.name} Tabelle`}</h1>
         <div id="handball-tabelle" />
       </div>
     </>

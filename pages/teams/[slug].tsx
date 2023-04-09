@@ -1,72 +1,171 @@
-// Import necessary modules from the @apollo/client package
-import { InMemoryCache, useQuery } from '@apollo/client'
+import { useQuery, QueryResult } from '@apollo/client'
+import { NOTFOUND } from 'dns'
 import gql from 'graphql-tag'
-import { ApolloClient } from '@apollo/client'
+import { GET_TEAM_NEWS } from '..'
+import client from '../../apollo-client'
+import { Gameplan } from '../../components/Gameplan'
+import { Table } from '../../components/Table'
+import { TeamNewsComponent } from '../../components/TeamNews'
 
-// Initialize a new instance of the ApolloClient with the specified GraphQL API endpoint and in-memory cache
-const client = new ApolloClient({
-  uri: 'https://api-eu-central-1.graphcms.com/v2/cl0874wb42pah01xr1jnmabfu/master',
-  cache: new InMemoryCache(),
-})
-
-// Define a GraphQL query to retrieve beitraege (posts) with a specified zuweisung (assignment) value
-const GET_beitraege = gql`
-  query beitraege($zuweisung: String!) {
-    beitraege(where: { zuweisung: $zuweisung }, last: 3) {
-      id
-      title
-      slug
-      description
-      image
-    }
-  }
-`
-
-// Define an interface for the Props passed to the DynamicPage component
-interface Props {
-  zuweisung: any
+export interface HandballNetConfiguration {
+  gameplan_script: string
+  table_script: string
 }
 
-// Create a functional component for the DynamicPage
-const DynamicPage: React.FC<Props> = ({ zuweisung }) => {
-  // Use the useQuery hook to execute the GET_beitraege query using the specified ApolloClient and zuweisung value
-  const { data, error } = useQuery(GET_beitraege, {
-    client,
-    variables: { zuweisung: zuweisung },
-  })
+export interface SocialMedia {
+  instagram: string
+  facebook: string
+}
 
-  // Log the query response data and error to the console
-  console.log(data)
-  console.log(error)
+export interface HygraphPicture {
+  url: string
+}
 
-  // Return a div containing the mapped data from the query response
+export interface TeamNews {
+  id: string
+}
+
+export interface Team {
+  id: string
+  name: string
+  gender: 'Maennlich' | 'Weiblich' | 'Gemischt'
+  practice_times: string[]
+  coaches: string[]
+  handball_net_configuration: HandballNetConfiguration
+  slug: string
+  social_media: SocialMedia
+  team_picture: HygraphPicture
+  team_picture_description: string
+  teamsNews: TeamNews[]
+}
+
+export interface TeamOverviewPageProps {
+  team: Team
+  latestTeamNews: TeamNews
+}
+
+const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
+  team,
+  latestTeamNews,
+}) => {
+  console.log(latestTeamNews)
+
   return (
-    <div>
-      {data &&
-        data.beitraege.map((beitrag, index) => (
-          <div key={index}>
-            <p>{beitrag.title}</p>
+    <div className="flex py-8 gap-10">
+      <div className="flex-2 flex flex-col gap-4">
+        {/* Herren plus Foto */}
+        <div>
+          <div className="text-6xl">{team.name.toUpperCase()}</div>
+          <div className="shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
+            <img
+              className="object-cover w-full h-full"
+              src={team.team_picture.url}
+              alt={team.name}
+            />
+            {team.team_picture_description && (
+              <p className="py-6 px-6 text-xl">
+                {team.team_picture_description}
+              </p>
+            )}
           </div>
-        ))}
+        </div>
+        {/* Trainer Info */}
+        <div className="p-12 flex shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
+          <div className="flex-1">
+            <h2 className="text-3xl">Trainer:</h2>
+            <div className="flex flex-col gap-2">
+              {team.coaches.map((coach) => {
+                return <div>{coach}</div>
+              })}
+            </div>
+          </div>
+          <div className="flex-1">
+            <div>
+              <h2 className="text-3xl">Trainingszeiten:</h2>
+              <div className="flex flex-col gap-2">
+                {team.practice_times.map((practiceTime) => {
+                  return <div>{practiceTime}</div>
+                })}
+              </div>
+            </div>
+            <div>
+              <h2 className="text-3xl">Social Media:</h2>
+              {team.social_media.facebook}
+              {team.social_media.instagram}
+            </div>
+          </div>
+        </div>
+        <div>
+          <h1 className="text-4xl">NEWS</h1>
+          <TeamNewsComponent teamNews={latestTeamNews} />
+        </div>
+      </div>
+
+      <div className="flex-1">
+        <Table team={team} />
+        <Gameplan team={team} />
+      </div>
     </div>
   )
 }
 
-// Define a getServerSideProps function that will retrieve the zuweisung value from the params object passed to the component
-export async function getServerSideProps({ params }) {
-  const zuweisung = params.slug as string
+const SINGLE_TEAM_QUERY = gql`
+  query SingleTeamRequest($slug: String!) {
+    team(where: { slug: $slug }) {
+      name
+      gender
+      practice_times
+      coaches
+      handball_net_configuration {
+        gameplan_script
+        table_script
+      }
+      slug
+      social_media {
+        instagram
+        facebook
+      }
+      team_picture {
+        url
+      }
+      team_picture_description
+      teamsNews {
+        id
+      }
+    }
+  }
+`
+
+type ServerSideProps = {
+  props: {
+    team: Team
+    latestTeamNews: TeamNews
+  }
+}
+
+export async function getServerSideProps({
+  params,
+}: any): Promise<ServerSideProps> {
+  const slug = params.slug as string
+
   const { data } = await client.query({
-    query: GET_beitraege,
-    variables: { zuweisung: zuweisung },
+    query: SINGLE_TEAM_QUERY,
+    variables: { slug },
   })
 
-  // Return the zuweisung value as a prop for the DynamicPage component
+  const latestTeamNewsId: string = data.team.teamsNews[0].id
+
+  const { error, data: teamNewsResponse } = await client.query({
+    query: GET_TEAM_NEWS,
+    variables: { id: latestTeamNewsId },
+  })
+
   return {
     props: {
-      zuweisung: params.slug as string,
+      team: data.team,
+      latestTeamNews: teamNewsResponse.teamNews,
     },
   }
 }
 
-// Export the DynamicPage component as the default export
-export default DynamicPage
+export default TeamOverviewPage
