@@ -40,61 +40,71 @@ a {
   transform: scaleX(1);
 }
 
-@media screen and (min-width: 768px) {
-  .hb-embed__title {
-    color: black;
-  }
-  .hb-embed__title-container {
-    @apply border-b-primary !important;
-  }
+.hb-embed__title {
+  color: black;
+}
+.hb-embed__title-container {
+  @apply border-b-primary !important;
+}
 
-  .hb-embed__schedule
-    .hb-embed__schedule-list
-    .hb-embed__schedule-list-grouped-item
-    .hb-embed__schedule-list-item-date {
-    color: black !important;
-  }
+.hb-embed__schedule
+  .hb-embed__schedule-list
+  .hb-embed__schedule-list-grouped-item
+  .hb-embed__schedule-list-item-date {
+  color: black !important;
+}
 
+.hb-embed {
+  font-size: small !important;
+}
+
+@media screen and (min-width: 1024px) {
   .hb-embed {
-    font-size: larger !important;
+    font-size: medium !important;
   }
+}
 
-  .hb-embed__schedule
-    .hb-embed__schedule-list
-    .hb-embed__schedule-list-grouped-item
-    .hb-embed__schedule-list-item
-    .hb-embed__schedule-list-item-content {
-    padding: 4px !important;
+@media screen and (min-width: 1280px) {
+  .hb-embed {
+    font-size: large !important;
   }
+}
 
-  .hb-embed__schedule-list-item-score {
-    background-color: #facc14 !important;
-    color: black !important;
-  }
+.hb-embed__schedule
+  .hb-embed__schedule-list
+  .hb-embed__schedule-list-grouped-item
+  .hb-embed__schedule-list-item
+  .hb-embed__schedule-list-item-content {
+  padding: 4px !important;
+}
 
-  .hb-embed__table .hb-embed__table-numeric {
-    font-weight: 500 !important;
-  }
+.hb-embed__schedule-list-item-score {
+  background-color: #facc14 !important;
+  color: black !important;
+}
 
-  .hb-embed a {
-    color: black !important;
-  }
+.hb-embed__table .hb-embed__table-numeric {
+  font-weight: 500 !important;
+}
 
-  .hb-embed__post {
-    @apply bg-primary !important;
-    color: black !important;
-  }
+.hb-embed a {
+  color: black !important;
+}
 
-  .hb-embed__btn {
-    @apply bg-primary !important;
-    border: #facc14 !important;
-  }
+.hb-embed__post {
+  @apply bg-primary !important;
+  color: black !important;
+}
 
-  .hb-embed__table thead th {
-    @apply border-b-primary !important;
-  }
+.hb-embed__btn {
+  @apply bg-primary !important;
+  border: #facc14 !important;
+}
 
-  .hb-embed__btn-box {
-    margin-top: 16px;
-  }
+.hb-embed__table thead th {
+  @apply border-b-primary !important;
+}
+
+.hb-embed__btn-box {
+  margin-top: 16px;
 }

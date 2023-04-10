@@ -2,7 +2,7 @@ import { gql } from '@apollo/client'
 import client from '../apollo-client'
 import ClubInformation from '../components/ClubInformation'
 import { Navigation } from '../components/Navbar/Navigation'
-import { TeamNews, TeamNewsComponent } from '../components/TeamNews'
+import { TeamNewsComponent } from '../components/TeamNews'
 import { Team } from './teams/[slug]'
 
 const SINGLE_TEAM_QUERY = gql`

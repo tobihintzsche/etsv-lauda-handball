@@ -1,11 +1,17 @@
 import { useQuery, QueryResult } from '@apollo/client'
 import { NOTFOUND } from 'dns'
 import gql from 'graphql-tag'
-import { GET_TEAM_NEWS } from '..'
+import { GET_TEAM_NEWS, TeamNews } from '..'
 import client from '../../apollo-client'
 import { Gameplan } from '../../components/Gameplan'
 import { Table } from '../../components/Table'
 import { TeamNewsComponent } from '../../components/TeamNews'
+
+import InstagramLogo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/Instagram_Logo.svg'
+import FacebookLogo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/Facebook_Logo.svg'
+
+import Link from 'next/link'
+import Image from 'next/image'
 
 export interface HandballNetConfiguration {
   gameplan_script: string
@@ -19,10 +25,6 @@ export interface SocialMedia {
 
 export interface HygraphPicture {
   url: string
-}
-
-export interface TeamNews {
-  id: string
 }
 
 export interface Team {
@@ -51,8 +53,8 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
   console.log(latestTeamNews)
 
   return (
-    <div className="flex py-8 gap-10">
-      <div className="flex-2 flex flex-col gap-4">
+    <div className="flex flex-col lg:flex-row py-8 gap-10">
+      <div className="flex-2 flex flex-col gap-8">
         {/* Herren plus Foto */}
         <div>
           <div className="text-6xl">{team.name.toUpperCase()}</div>
@@ -70,8 +72,8 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
           </div>
         </div>
         {/* Trainer Info */}
-        <div className="p-12 flex shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
-          <div className="flex-1">
+        <div className="p-12 flex flex-row flex-wrap shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
+          <div className="w-min">
             <h2 className="text-3xl">Trainer:</h2>
             <div className="flex flex-col gap-2">
               {team.coaches.map((coach) => {
@@ -79,7 +81,7 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
               })}
             </div>
           </div>
-          <div className="flex-1">
+          <div className="w-min">
             <div>
               <h2 className="text-3xl">Trainingszeiten:</h2>
               <div className="flex flex-col gap-2">
@@ -88,20 +90,32 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
                 })}
               </div>
             </div>
-            <div>
-              <h2 className="text-3xl">Social Media:</h2>
-              {team.social_media.facebook}
-              {team.social_media.instagram}
+            <div className="overflow-hidden">
+              <h2 className="text-3xl pb-2">Social Media:</h2>
+              <div className="flex gap-4">
+                {team.social_media.facebook && (
+                  <Link href={team.social_media.facebook}>
+                    <Image src={FacebookLogo} width={50} height={50} />
+                  </Link>
+                )}
+                {team.social_media.instagram && (
+                  <Link href={team.social_media.instagram}>
+                    <Image src={InstagramLogo} width={50} height={50} />
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
         </div>
-        <div>
-          <h1 className="text-4xl">NEWS</h1>
-          <TeamNewsComponent teamNews={latestTeamNews} />
-        </div>
+        {latestTeamNews && (
+          <div>
+            <h1 className="text-4xl pb-4">NEWS</h1>
+            <TeamNewsComponent teamNews={latestTeamNews} />
+          </div>
+        )}
       </div>
 
-      <div className="flex-1">
+      <div className="flex flex-col gap-10 flex-1">
         <Table team={team} />
         <Gameplan team={team} />
       </div>

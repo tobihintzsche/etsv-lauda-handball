@@ -2,25 +2,28 @@ import { gql, useApolloClient, useQuery } from '@apollo/client'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useEffect, useMemo, useState } from 'react'
-import { useLayoutContext } from '../LayoutContext'
-import { Team } from '../pages/teams/[slug]'
-import Footer from './footer'
-import DesktopHeader from './Header.desktop'
-import MobileHeader from './Header.mobile'
-import { Navigation, SortedNavigationTeams } from './Navbar/Navigation'
-import { DesktopNavigation } from './Navbar/Navigation.desktop'
-import { MobileNavigation } from './Navbar/Navigation.mobile'
-import {
-  NavigationConfig,
-  NavigationSingleLink,
-} from './Navbar/navigationConfig'
-import { useDeviceType } from './Navbar/useDeviceType'
+
+import FooterWithSponsors from './FooterWithSponsors'
+import { NavigationPageProps } from './Navbar/Navigation'
 
 type DashboardLayoutProps = {
   children: React.ReactNode
 }
 
-const DynamicNavigation = dynamic(
+export interface Sponsor {
+  image: {
+    url: string
+  }
+  link: string
+  name: string
+  sponsoring_rank: SponsoringRank
+}
+
+export interface SponsoringRank {
+  sponsoringRank: 'Hauptsponsor' | 'Premiumsponsor' | 'CoSponsor'
+}
+
+const DynamicNavigation = dynamic<NavigationPageProps>(
   () => import('./Navbar/Navigation').then((m) => m.Navigation),
   {
     ssr: false,
@@ -28,7 +31,11 @@ const DynamicNavigation = dynamic(
 )
 
 export default function Layout({ children }: DashboardLayoutProps) {
-  const { loading, error, data } = useQuery(
+  const {
+    loading,
+    error,
+    data: homeTeamResponse,
+  } = useQuery(
     gql`
       query NavigationRequest {
         teams {
@@ -39,85 +46,40 @@ export default function Layout({ children }: DashboardLayoutProps) {
     `
   )
 
+  const { data: sponsorsResponse } = useQuery(
+    gql`
+      query SponsorRequest {
+        sponsors {
+          name
+          link
+          image {
+            url
+          }
+          sponsoring_rank
+        }
+      }
+    `
+  )
+
   const [navigationItems, setNavigationItems] = useState([])
 
+  const [sponsors, setSponsors] = useState<Sponsor[]>([])
+
   useEffect(() => {
-    if (data) {
-      setNavigationItems(data.teams)
+    if (homeTeamResponse) {
+      setNavigationItems(homeTeamResponse.teams)
     }
-  }, [data])
+  }, [homeTeamResponse])
+
+  useEffect(() => {
+    if (sponsorsResponse) {
+      setSponsors(sponsorsResponse.sponsors)
+    }
+  }, [sponsorsResponse])
 
   if (error) return <p>Error :(</p>
 
-  function sortTeams(teams: Team[]): SortedNavigationTeams {
-    return {
-      men: teams.filter((team: Team) => team.gender === 'Maennlich'),
-      woman: teams.filter((team: Team) => team.gender === 'Weiblich'),
-      mixed: teams.filter((team: Team) => team.gender === 'Gemischt'),
-    }
-  }
-
-  const deviceType = useDeviceType()
-
-  const isMobile = deviceType === 'mobile'
-
-  const sortedNavigationTeams = sortTeams(navigationItems)
-
-  const navigationConfig: NavigationConfig = {
-    navigation: [
-      {
-        link: {
-          title: 'Verein',
-          href: '/about',
-        },
-      },
-      {
-        link: {
-          title: 'Herren',
-          href: '/teams/Herren',
-        },
-      },
-      {
-        link: {
-          title: 'Teams',
-          href: '/teams',
-        },
-        subNavigation: {
-          men: [
-            ...sortedNavigationTeams.men.map((team) => {
-              return {
-                title: team.name,
-                href: `/teams/${team.slug}`,
-              } as NavigationSingleLink
-            }),
-          ],
-
-          woman: [
-            ...sortedNavigationTeams.woman.map((team) => {
-              return {
-                title: team.name,
-                href: `/teams/${team.slug}`,
-              } as NavigationSingleLink
-            }),
-          ],
-          mixed: [
-            ...sortedNavigationTeams.woman.map((team) => {
-              return {
-                title: team.name,
-                href: `/teams/${team.slug}`,
-              } as NavigationSingleLink
-            }),
-          ],
-        },
-      },
-      {
-        link: {
-          title: 'News',
-          href: '/news',
-        },
-      },
-    ],
-  }
+  console.log('sponsors', sponsors)
 
   if (!navigationItems) return null
 
@@ -129,14 +91,12 @@ export default function Layout({ children }: DashboardLayoutProps) {
           rel="stylesheet"
         />
       </Head>
-      <div className="">
-        <DynamicNavigation teams={navigationItems} />
-        <div className="max-w-screen-2xl mx-auto">
-          <div className="w-full px-4 lg:px-10 md:px-8 sm:px-6">{children}</div>
-        </div>
-
-        <Footer />
+      <DynamicNavigation teams={navigationItems} />
+      <div className="max-w-screen-2xl mx-auto">
+        <div className="w-full px-4 lg:px-10 md:px-8 sm:px-6">{children}</div>
       </div>
+
+      <FooterWithSponsors sponsors={sponsors} />
     </>
   )
 }

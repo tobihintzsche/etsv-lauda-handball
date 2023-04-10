@@ -7,9 +7,13 @@ import Link from 'next/link'
 
 export interface TeamNewsProps {
   teamNews: TeamNews
+  showLogo: boolean
 }
 
-export const TeamNewsComponent: React.FC<TeamNewsProps> = ({ teamNews }) => {
+export const TeamNewsComponent: React.FC<TeamNewsProps> = ({
+  teamNews,
+  showLogo = true,
+}) => {
   return (
     <div className="relative">
       <div className="bg-white px-6 pt-6 shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
@@ -30,10 +34,11 @@ export const TeamNewsComponent: React.FC<TeamNewsProps> = ({ teamNews }) => {
         </p>
         <img className="object-cover w-full" src={teamNews.picture.url} />
       </div>
-
-      <div className="absolute lg:h-[250px] lg:w-[250px] md:h-[200px] md:w-[200px] h-[150px] w-[150px] left-0 bottom-0">
-        <Image src={CuttedLogo} alt="ETSV Logo" height={250} width={250} />
-      </div>
+      {showLogo && (
+        <div className="absolute lg:h-[250px] lg:w-[250px] md:h-[200px] md:w-[200px] h-[150px] w-[150px] left-0 bottom-0">
+          <Image src={CuttedLogo} alt="ETSV Logo" height={250} width={250} />
+        </div>
+      )}
     </div>
   )
 }

@@ -71,7 +71,7 @@ export const MobileNavigationOverlay: React.FC<
                       href={item.link.href}
                       className="mr-4 hover:text-yellow-900 w-max text-5xl"
                     >
-                      {item.link.title.toUpperCase()}
+                      {item.link.title && item.link.title.toUpperCase()}
                     </a>
                     <div>
                       {navigationConfig.navigation.map((navItem, index) => {
