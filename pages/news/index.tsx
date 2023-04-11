@@ -169,6 +169,7 @@ export interface Club {
   }
   home_description: string
   subline: string
+  manager: string
 }
 
 export async function getServerSideProps(): Promise<ServerSideProps> {

@@ -12,7 +12,7 @@ const FooterWithSponsors: React.FC<FooterWithSponsorsProps> = ({
 }) => {
   return (
     <div>
-      <div className="pb-10">
+      <div className="py-10">
         <SponsorComponent sponsors={sponsors} />
       </div>
       <Footer />

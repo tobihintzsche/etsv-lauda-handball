@@ -41,13 +41,13 @@ export const Navigation: React.FC<NavigationPageProps> = ({ teams }) => {
       {
         link: {
           title: 'Verein',
-          href: '/about',
+          href: '/club',
         },
       },
       {
         link: {
           title: 'Herren',
-          href: '/teams/Herren',
+          href: '/teams/herren',
         },
       },
       {

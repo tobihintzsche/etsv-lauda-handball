@@ -52,6 +52,7 @@ export const GET_TEAM_NEWS = gql`
       picture {
         url
       }
+      createdAt
     }
   }
 `
@@ -111,6 +112,7 @@ export interface TeamNews {
   picture: {
     url: string
   }
+  createdAt: Date
 }
 
 type ServerSideProps = {

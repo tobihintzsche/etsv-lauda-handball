@@ -79,8 +79,6 @@ export default function Layout({ children }: DashboardLayoutProps) {
 
   if (error) return <p>Error :(</p>
 
-  console.log('sponsors', sponsors)
-
   if (!navigationItems) return null
 
   return (

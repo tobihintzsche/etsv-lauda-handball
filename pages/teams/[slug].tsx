@@ -110,7 +110,7 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
         {latestTeamNews && (
           <div>
             <h1 className="text-4xl pb-4">NEWS</h1>
-            <TeamNewsComponent teamNews={latestTeamNews} />
+            <TeamNewsComponent showLogo={true} teamNews={latestTeamNews} />
           </div>
         )}
       </div>

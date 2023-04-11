@@ -22,7 +22,7 @@ const ClubInformation: React.FC<ClubInformationProps> = ({ club }) => {
           </div>
         </div>
         <div
-          className="pt-8 text-xl"
+          className="pt-8 text-xl whitespace-pre-wrap"
           dangerouslySetInnerHTML={{
             __html: club.home_description,
           }}

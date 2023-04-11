@@ -6,8 +6,6 @@ interface SponsorComponentProps {
 }
 
 const SponsorComponent: React.FC<SponsorComponentProps> = ({ sponsors }) => {
-  console.log(sponsors.map((sponsor) => sponsor.name))
-
   return (
     <div className="max-w-screen-2xl mx-auto">
       <div className="w-full px-4 lg:px-10 md:px-8 sm:px-6">
