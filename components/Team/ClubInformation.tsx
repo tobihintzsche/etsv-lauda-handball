@@ -1,5 +1,5 @@
 import React from 'react'
-import { Club } from '../pages'
+import { Club } from '../../types/clubTypes'
 
 interface ClubInformationProps {
   club: Club

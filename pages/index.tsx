@@ -1,79 +1,12 @@
-import { gql } from '@apollo/client'
 import client from '../apollo-client'
-import ClubInformation from '../components/ClubInformation'
-import { Navigation } from '../components/Navbar/Navigation'
-import { TeamNewsComponent } from '../components/TeamNews'
-import { Team } from './teams/[slug]'
-
-const SINGLE_TEAM_QUERY = gql`
-  query SingleTeamRequest($slug: String!) {
-    team(where: { slug: $slug }) {
-      name
-      gender
-      practice_times
-      coaches
-      handball_net_configuration {
-        gameplan_script
-        table_script
-      }
-      slug
-      social_media {
-        instagram
-        facebook
-      }
-      team_picture {
-        url
-      }
-      teamsNews {
-        id
-      }
-    }
-  }
-`
-
-const GET_HOME_TEAM = gql`
-  query HomeRequest {
-    homes {
-      team {
-        id
-        slug
-      }
-    }
-  }
-`
-
-export const GET_TEAM_NEWS = gql`
-  query TeamNewsRequest($id: ID!) {
-    teamNews(where: { id: $id }) {
-      id
-      slug
-      title
-      description
-      picture {
-        url
-      }
-      createdAt
-    }
-  }
-`
-
-const GET_CLUBS = gql`
-  query ClubsRequest {
-    clubs {
-      description
-      id
-      name
-      logo {
-        url
-      }
-      picture {
-        url
-      }
-      home_description
-      subline
-    }
-  }
-`
+import ClubInformation from '../components/Team/ClubInformation'
+import { TeamNewsComponent } from '../components/Team/TeamNews'
+import { GET_CLUBS } from '../queries/clubQueries'
+import { GET_TEAM_NEWS } from '../queries/teamNewsQueries'
+import { GET_HOME_TEAM, SINGLE_TEAM_QUERY } from '../queries/teamQueries'
+import { Team } from '../types/teamTypes'
+import { TeamNews } from '../types/teamNewsTypes'
+import { Club } from '../types/clubTypes'
 
 interface HomePageProps {
   team: Team
@@ -86,8 +19,6 @@ export default function HomePage({
   team,
   club,
 }: HomePageProps) {
-  console.log(club)
-
   return (
     <div className="py-10 flex flex-col">
       <div className="flex flex-col lg:flex-row gap-4">
@@ -104,16 +35,6 @@ export default function HomePage({
     </div>
   )
 }
-export interface TeamNews {
-  id: string
-  slug: string | null
-  title: string
-  description: string
-  picture: {
-    url: string
-  }
-  createdAt: Date
-}
 
 type ServerSideProps = {
   props: {
@@ -123,28 +44,12 @@ type ServerSideProps = {
   }
 }
 
-export interface Club {
-  description: string
-  id: string
-  name: string
-  logo: {
-    url: string
-  }
-  picture: {
-    url: string
-  }
-  home_description: string
-  subline: string
-}
-
 export async function getServerSideProps(): Promise<ServerSideProps> {
   const { data: homeRequestResponse } = await client.query({
     query: GET_HOME_TEAM,
   })
 
   const teamSlug = homeRequestResponse.homes[0].team.slug
-
-  const id: string = 'clg6oq15nkopb0auhflp1wmrc'
 
   const { data: teamRequestResponse } = await client.query({
     query: SINGLE_TEAM_QUERY,

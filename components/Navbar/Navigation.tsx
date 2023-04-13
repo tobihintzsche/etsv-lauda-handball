@@ -1,17 +1,14 @@
-import Image from 'next/image'
-import React, { useEffect, useMemo, useState } from 'react'
-import { NavigationConfig, NavigationSingleLink } from './navigationConfig'
-import Logo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/Handball_Logo.svg'
-import BurgerMenu from '/Users/tobiashintzsche/dev/etsv-lauda-handball/BurgerMenu.svg'
+import React from 'react'
 
-import Link from 'next/link'
 import { DesktopNavigation } from './Navigation.desktop'
 import { MobileNavigation } from './Navigation.mobile'
 import { useDeviceType } from './useDeviceType'
-import client from '../../apollo-client'
-import { Team } from '../../pages/teams/[slug]'
-import { gql } from '@apollo/client'
-import { useLayoutContext } from '../../LayoutContext'
+
+import {
+  NavigationConfig,
+  NavigationSingleLink,
+} from '../../types/navigationTypes'
+import { Team } from '../../types/teamTypes'
 
 export interface NavigationPageProps {
   teams: Team[]

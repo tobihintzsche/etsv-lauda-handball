@@ -1,5 +1,5 @@
 import Script from 'next/script'
-import { Team } from '../pages/teams/[slug]'
+import { Team } from '../../types/teamTypes'
 
 export interface GameplanProps {
   team: Team

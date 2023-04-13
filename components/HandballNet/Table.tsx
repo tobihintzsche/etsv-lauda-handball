@@ -1,13 +1,11 @@
 import Script from 'next/script'
-import { Team } from '../pages/teams/[slug]'
+import { Team } from '../../types/teamTypes'
 
 export interface TableProps {
   team: Team
 }
 
 export const Table: React.FC<TableProps> = ({ team }) => {
-  console.log(team.handball_net_configuration.table_script)
-
   return (
     <>
       <Script

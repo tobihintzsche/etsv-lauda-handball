@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useLayoutContext } from '../../LayoutContext'
-import { NavigationItem } from './navigationConfig'
+import { NavigationItem } from '../../types/navigationTypes'
 import { SubNavigation } from './Subnavigation.desktop'
 
 interface NavigationItemProps {

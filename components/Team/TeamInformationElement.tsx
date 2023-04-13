@@ -2,7 +2,7 @@ import React from 'react'
 
 import Image from 'next/image'
 
-import Banner from '/Users/tobiashintzsche/dev/etsv-lauda-handball/Banner.png'
+import Banner from '/Users/tobiashintzsche/dev/etsv-lauda-handball/images//Banner.png'
 
 export interface TeamInformationElementProps {}
 

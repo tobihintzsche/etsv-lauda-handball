@@ -1,26 +1,15 @@
-import { gql, useApolloClient, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { GET_NAVIGATION, GET_SPONSORS } from '../queries/clubQueries'
+import { Sponsor } from '../types/clubTypes'
 
-import FooterWithSponsors from './FooterWithSponsors'
+import FooterWithSponsors from './Footer/FooterWithSponsors'
 import { NavigationPageProps } from './Navbar/Navigation'
 
 type DashboardLayoutProps = {
   children: React.ReactNode
-}
-
-export interface Sponsor {
-  image: {
-    url: string
-  }
-  link: string
-  name: string
-  sponsoring_rank: SponsoringRank
-}
-
-export interface SponsoringRank {
-  sponsoringRank: 'Hauptsponsor' | 'Premiumsponsor' | 'CoSponsor'
 }
 
 const DynamicNavigation = dynamic<NavigationPageProps>(
@@ -31,35 +20,9 @@ const DynamicNavigation = dynamic<NavigationPageProps>(
 )
 
 export default function Layout({ children }: DashboardLayoutProps) {
-  const {
-    loading,
-    error,
-    data: homeTeamResponse,
-  } = useQuery(
-    gql`
-      query NavigationRequest {
-        teams {
-          name
-          gender
-        }
-      }
-    `
-  )
+  const { error, data: homeTeamResponse } = useQuery(GET_NAVIGATION)
 
-  const { data: sponsorsResponse } = useQuery(
-    gql`
-      query SponsorRequest {
-        sponsors {
-          name
-          link
-          image {
-            url
-          }
-          sponsoring_rank
-        }
-      }
-    `
-  )
+  const { data: sponsorsResponse } = useQuery(GET_SPONSORS)
 
   const [navigationItems, setNavigationItems] = useState([])
 
@@ -83,12 +46,6 @@ export default function Layout({ children }: DashboardLayoutProps) {
 
   return (
     <>
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
       <DynamicNavigation teams={navigationItems} />
       <div className="max-w-screen-2xl mx-auto">
         <div className="w-full px-4 lg:px-10 md:px-8 sm:px-6">{children}</div>

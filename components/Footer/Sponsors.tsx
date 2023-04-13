@@ -1,5 +1,5 @@
 import React from 'react'
-import { Sponsor } from './Layout'
+import { Sponsor } from '../../types/clubTypes'
 
 interface SponsorComponentProps {
   sponsors: Sponsor[]
@@ -13,9 +13,12 @@ const SponsorComponent: React.FC<SponsorComponentProps> = ({ sponsors }) => {
           <div className="p-6">
             <h1 className="text-4xl pb-4">SPONSOREN</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:flex gap-6">
-              {sponsors.map((sponsor) => {
+              {sponsors.map((sponsor, index) => {
                 return (
-                  <div className="flex-1 shadow-[5px_5px_20px_3px_rgba(0,0,0,0.25)] ">
+                  <div
+                    className="flex-1 shadow-[5px_5px_20px_3px_rgba(0,0,0,0.25)] "
+                    key={index}
+                  >
                     <img
                       src={sponsor.image.url}
                       alt={sponsor.name}

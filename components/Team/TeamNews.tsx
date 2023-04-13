@@ -1,14 +1,14 @@
 import React from 'react'
-import { TeamNews } from '../pages'
-import { Team } from '../pages/teams/[slug]'
+
 import Image from 'next/image'
-import CuttedLogo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/Handball_Logo_Cutted_Square_Project.svg'
+import CuttedLogo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/images//Handball_Logo_Cutted_Square_Project.svg'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { TeamNews } from '../../types/teamNewsTypes'
 
 export interface TeamNewsProps {
   teamNews: TeamNews
-  showLogo: boolean
+  showLogo?: boolean
 }
 
 export function TeamNewsComponent({

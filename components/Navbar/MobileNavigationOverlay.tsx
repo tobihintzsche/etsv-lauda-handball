@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { NavigationConfig } from './navigationConfig'
+import { NavigationConfig } from '../../types/navigationTypes'
 
 interface MobileNavigationOverlayProps {
   isOpen: boolean

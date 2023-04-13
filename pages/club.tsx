@@ -1,37 +1,13 @@
-import { gql } from '@apollo/client'
 import client from '../apollo-client'
-import ClubInformation from '../components/ClubInformation'
-import { Navigation } from '../components/Navbar/Navigation'
-import { TeamNewsComponent } from '../components/TeamNews'
-import { Club } from './news'
-import { Team } from './teams/[slug]'
 
-const GET_CLUBS = gql`
-  query ClubsRequest {
-    clubs {
-      description
-      id
-      name
-      logo {
-        url
-      }
-      picture {
-        url
-      }
-      home_description
-      subline
-      manager
-    }
-  }
-`
+import { GET_CLUBS } from '../queries/clubQueries'
+import { Club } from '../types/clubTypes'
 
 interface ClubPageProps {
   club: Club
 }
 
 export default function ClubPage({ club }: ClubPageProps) {
-  console.log(club)
-
   return (
     <div className="p-6 shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
       <div className="flex pb-8 flex-col w-full lg:w-max">
@@ -66,20 +42,6 @@ export default function ClubPage({ club }: ClubPageProps) {
       </div>
     </div>
   )
-}
-
-export interface Club {
-  description: string
-  id: string
-  name: string
-  logo: {
-    url: string
-  }
-  picture: {
-    url: string
-  }
-  home_description: string
-  subline: string
 }
 
 interface ServerSideProps {

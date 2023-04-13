@@ -1,45 +1,17 @@
-import { useQuery, QueryResult } from '@apollo/client'
-import { NOTFOUND } from 'dns'
-import gql from 'graphql-tag'
-import { GET_TEAM_NEWS, TeamNews } from '..'
 import client from '../../apollo-client'
-import { Gameplan } from '../../components/Gameplan'
-import { Table } from '../../components/Table'
-import { TeamNewsComponent } from '../../components/TeamNews'
+import { Gameplan } from '../../components/HandballNet/Gameplan'
+import { Table } from '../../components/HandballNet/Table'
+import { TeamNewsComponent } from '../../components/Team/TeamNews'
 
-import InstagramLogo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/Instagram_Logo.svg'
-import FacebookLogo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/Facebook_Logo.svg'
+import InstagramLogo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/images//Instagram_Logo.svg'
+import FacebookLogo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/images//Facebook_Logo.svg'
 
 import Link from 'next/link'
 import Image from 'next/image'
-
-export interface HandballNetConfiguration {
-  gameplan_script: string
-  table_script: string
-}
-
-export interface SocialMedia {
-  instagram: string
-  facebook: string
-}
-
-export interface HygraphPicture {
-  url: string
-}
-
-export interface Team {
-  id: string
-  name: string
-  gender: 'Maennlich' | 'Weiblich' | 'Gemischt'
-  practice_times: string[]
-  coaches: string[]
-  handball_net_configuration: HandballNetConfiguration
-  slug: string
-  social_media: SocialMedia
-  team_picture: HygraphPicture
-  team_picture_description: string
-  teamsNews: TeamNews[]
-}
+import { SINGLE_TEAM_QUERY } from '../../queries/teamQueries'
+import { Team } from '../../types/teamTypes'
+import { GET_TEAM_NEWS } from '../../queries/teamNewsQueries'
+import { TeamNews } from '../../types/teamNewsTypes'
 
 export interface TeamOverviewPageProps {
   team: Team
@@ -50,8 +22,6 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
   team,
   latestTeamNews,
 }) => {
-  console.log(latestTeamNews)
-
   return (
     <div className="flex flex-col lg:flex-row py-8 gap-10">
       <div className="flex-2 flex flex-col gap-8">
@@ -76,8 +46,8 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
           <div className="w-min">
             <h2 className="text-3xl">Trainer:</h2>
             <div className="flex flex-col gap-2">
-              {team.coaches.map((coach) => {
-                return <div>{coach}</div>
+              {team.coaches.map((coach, index) => {
+                return <div key={index}>{coach}</div>
               })}
             </div>
           </div>
@@ -85,8 +55,8 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
             <div>
               <h2 className="text-3xl">Trainingszeiten:</h2>
               <div className="flex flex-col gap-2">
-                {team.practice_times.map((practiceTime) => {
-                  return <div>{practiceTime}</div>
+                {team.practice_times.map((practiceTime, index) => {
+                  return <div key={index}>{practiceTime}</div>
                 })}
               </div>
             </div>
@@ -95,12 +65,16 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
               <div className="flex gap-4">
                 {team.social_media.facebook && (
                   <Link href={team.social_media.facebook}>
-                    <Image src={FacebookLogo} width={50} height={50} />
+                    <a>
+                      <Image src={FacebookLogo} width={50} height={50} />
+                    </a>
                   </Link>
                 )}
                 {team.social_media.instagram && (
                   <Link href={team.social_media.instagram}>
-                    <Image src={InstagramLogo} width={50} height={50} />
+                    <a>
+                      <Image src={InstagramLogo} width={50} height={50} />
+                    </a>
                   </Link>
                 )}
               </div>
@@ -122,33 +96,6 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
     </div>
   )
 }
-
-const SINGLE_TEAM_QUERY = gql`
-  query SingleTeamRequest($slug: String!) {
-    team(where: { slug: $slug }) {
-      name
-      gender
-      practice_times
-      coaches
-      handball_net_configuration {
-        gameplan_script
-        table_script
-      }
-      slug
-      social_media {
-        instagram
-        facebook
-      }
-      team_picture {
-        url
-      }
-      team_picture_description
-      teamsNews {
-        id
-      }
-    }
-  }
-`
 
 type ServerSideProps = {
   props: {

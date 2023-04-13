@@ -1,13 +1,12 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 
-import Logo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/Handball_Logo.svg'
-import CuttedLogo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/Handball_Logo_Cutted_Square_Project.svg'
-import BurgerMenu from '/Users/tobiashintzsche/dev/etsv-lauda-handball/BurgerMenu.svg'
+import CuttedLogo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/images//Handball_Logo_Cutted_Square_Project.svg'
+import BurgerMenu from '/Users/tobiashintzsche/dev/etsv-lauda-handball/images//BurgerMenu.svg'
 
 import Link from 'next/link'
-import { NavigationConfig } from './navigationConfig'
 import { MobileNavigationOverlay } from './MobileNavigationOverlay'
+import { NavigationConfig } from '../../types/navigationTypes'
 
 interface MobileNavigationProps {
   navigationConfig: NavigationConfig

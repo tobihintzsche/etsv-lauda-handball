@@ -1,6 +1,5 @@
-import { link } from 'fs'
-import React, { useState } from 'react'
-import { NavigationItem, NavigationSingleLink } from './navigationConfig'
+import React from 'react'
+import { NavigationSingleLink } from '../../types/navigationTypes'
 
 export interface SubNavigationProps {
   subNavigation: {
@@ -13,8 +12,6 @@ export interface SubNavigationProps {
 export const SubNavigation: React.FC<SubNavigationProps> = ({
   subNavigation,
 }) => {
-  const { men } = subNavigation
-
   return (
     <>
       <div className="h-10 flex w-full justify-between">

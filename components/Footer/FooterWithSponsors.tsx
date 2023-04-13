@@ -1,6 +1,6 @@
 import React from 'react'
+import { Sponsor } from '../../types/clubTypes'
 import { Footer } from './Footer'
-import { Sponsor } from './Layout'
 import SponsorComponent from './Sponsors'
 
 interface FooterWithSponsorsProps {

@@ -1,15 +1,10 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
-import Logo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/Handball_Logo.svg'
-import Banner from '/Users/tobiashintzsche/dev/etsv-lauda-handball/Banner.png'
-import BurgerMenu from '/Users/tobiashintzsche/dev/etsv-lauda-handball/BurgerMenu.svg'
+import Logo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/images//Handball_Logo.svg'
 
 import Link from 'next/link'
-import { NavigationConfig, NavigationSingleLink } from './navigationConfig'
-import NavigationItem from './NavigationItem.desktop'
-import { SortedNavigationTeams } from './Navigation'
-import { title } from 'process'
 import DesktopNavigationItem from './NavigationItem.desktop'
+import { NavigationConfig } from '../../types/navigationTypes'
 
 interface DesktopNavigationProps {
   navigationConfig: NavigationConfig
