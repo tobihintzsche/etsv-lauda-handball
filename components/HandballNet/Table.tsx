@@ -10,9 +10,7 @@ export const Table: React.FC<TableProps> = ({ team }) => {
     <>
       <Script
         dangerouslySetInnerHTML={{
-          __html: `
-            (function(e,t,n,r,i,s,o){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)}, e[i].l=1*new Date;s=t.createElement(n),o=t.getElementsByTagName(n)[0];s.async=1; s.src=r;o.parentNode.insertBefore(s,o)})(window,document,"script", 'https://www.handball.net/widgets/embed/v1.js',"_hb");
-      `,
+          __html: `(function(e,t,n,r,i,s,o){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)}, e[i].l=1*new Date;s=t.createElement(n),o=t.getElementsByTagName(n)[0];s.async=1; s.src=r;o.parentNode.insertBefore(s,o)})(window,document,"script", 'https://www.handball.net/widgets/embed/v1.js',"_hb");`,
         }}
       />
 
@@ -25,7 +23,7 @@ export const Table: React.FC<TableProps> = ({ team }) => {
         }}
       />
       <div className="w-full">
-        <h1 className="text-3xl mb-4">{`${team.name} Tabelle`}</h1>
+        <h1 className="text-3xl lg:text-4xl mb-4">{`${team.name} Tabelle`}</h1>
         <div id="handball-tabelle" />
       </div>
     </>

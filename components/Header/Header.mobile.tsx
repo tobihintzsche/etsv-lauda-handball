@@ -5,14 +5,14 @@ import CuttedLogo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/images//H
 import BurgerMenu from '/Users/tobiashintzsche/dev/etsv-lauda-handball/images//BurgerMenu.svg'
 
 import Link from 'next/link'
-import { MobileNavigationOverlay } from './MobileNavigationOverlay'
 import { NavigationConfig } from '../../types/navigationTypes'
+import { MobileNavigationOverlay } from '../Navigation/MobileNavigationOverlay'
 
-interface MobileNavigationProps {
+interface MobileHeaderProps {
   navigationConfig: NavigationConfig
 }
 
-export const MobileNavigation: React.FC<MobileNavigationProps> = ({
+export const MobileHeader: React.FC<MobileHeaderProps> = ({
   navigationConfig,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -22,7 +22,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
   }
 
   return (
-    <div className="bg-yellow-400 relative">
+    <div className="bg-yellow-400 mb-4 relative">
       <div className="flex justify-between ">
         <div className="text-2xl lg:text-3xl pl-14 my-auto">
           <Link href="/">ETSV LAUDA HANDBALL</Link>

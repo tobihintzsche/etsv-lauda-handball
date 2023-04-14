@@ -62,8 +62,8 @@ export interface NavigationItem {
 }
 
 export interface NavigationSingleLink {
-  title?: string
-  href?: string
+  title: string
+  href: string
 }
 
 export interface NavigationConfig {

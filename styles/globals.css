@@ -55,12 +55,12 @@ a {
 }
 
 .hb-embed {
-  font-size: small !important;
+  font-size: medium !important;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   .hb-embed {
-    font-size: medium !important;
+    font-size: large !important;
   }
 }
 

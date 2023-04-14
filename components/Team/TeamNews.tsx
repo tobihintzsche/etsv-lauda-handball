@@ -25,7 +25,7 @@ export function TeamNewsComponent({
     <div className="relative">
       <div className="bg-white px-6 pt-6 shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
         <h1
-          className="text-3xl lg:text-5xl font-normal"
+          className="text-3xl lg:text-4xl font-normal"
           style={{
             WebkitTextStrokeColor: 'black',
             WebkitTextStrokeWidth: '1px',
@@ -34,7 +34,7 @@ export function TeamNewsComponent({
           {teamNews.title.toUpperCase()}
         </h1>
         <p className="text-lg lg:text-xl leading-8 py-8">
-          {teamNews.description.substring(0, 250) + ' ...'}
+          {teamNews.description.substring(0, 250) + ' ... '}
           <span className="text-amber-400">
             <Link href={`/news/${teamNews.slug}-${teamNews.id}`}>
               <span>[Zum Bericht]</span>

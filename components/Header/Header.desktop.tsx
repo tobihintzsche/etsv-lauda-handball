@@ -1,16 +1,16 @@
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React from 'react'
 import Logo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/images//Handball_Logo.svg'
 
 import Link from 'next/link'
-import DesktopNavigationItem from './NavigationItem.desktop'
+import DesktopNavigationItem from '../Navigation/NavigationItem.desktop'
 import { NavigationConfig } from '../../types/navigationTypes'
 
-interface DesktopNavigationProps {
+interface DesktopHeaderProps {
   navigationConfig: NavigationConfig
 }
 
-export const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
+export const DesktopHeader: React.FC<DesktopHeaderProps> = ({
   navigationConfig,
 }) => {
   return (

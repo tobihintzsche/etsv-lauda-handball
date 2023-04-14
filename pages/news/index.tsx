@@ -38,15 +38,11 @@ export default function NewsPage({ teamsNews }: NewsPageProps) {
     <div>
       <div>
         {allTeams.map((teamName: string) => (
-          <button
-            key={teamName}
-            onClick={() => handleFilterClick(teamName)}
-            className={`border rounded-md px-2 py-1 m-1 ${
-              activeFilters.includes(teamName) ? 'bg-yellow-400' : ''
-            }`}
-          >
-            {teamName}
-          </button>
+          <FilterButton
+            teamName={teamName}
+            activeFilters={activeFilters}
+            handleFilterClick={handleFilterClick}
+          />
         ))}
       </div>
       <div className="py-10 grid gap-4 grid-cols-1 md:grid-cols-2 ">
@@ -59,6 +55,30 @@ export default function NewsPage({ teamsNews }: NewsPageProps) {
         })}
       </div>
     </div>
+  )
+}
+
+export interface FilterButtonProps {
+  teamName: string
+  handleFilterClick: (value: string) => void
+  activeFilters: string[]
+}
+
+const FilterButton: React.FC<FilterButtonProps> = ({
+  teamName,
+  handleFilterClick,
+  activeFilters,
+}) => {
+  return (
+    <button
+      key={teamName}
+      onClick={() => handleFilterClick(teamName)}
+      className={`border rounded-md px-2 py-1 m-1 ${
+        activeFilters.includes(teamName) ? 'bg-yellow-400' : ''
+      }`}
+    >
+      {teamName}
+    </button>
   )
 }
 

@@ -3,6 +3,7 @@ import client from '../../apollo-client'
 import { Team } from '../../types/teamTypes'
 import { TeamNews } from '../../types/teamNewsTypes'
 import { GET_TEAM_NEWS } from '../../queries/teamNewsQueries'
+import { formatTimestamp } from '../../utils/formatTimestamp'
 
 export interface TeamOverviewPageProps {
   team: Team
@@ -10,20 +11,6 @@ export interface TeamOverviewPageProps {
 }
 
 const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({ news }) => {
-  function formatTimestamp(timestamp: Date): string {
-    const date = new Date(timestamp)
-    const options: any = {
-      month: '2-digit',
-      day: '2-digit',
-      year: 'numeric',
-    }
-    const formattedDate = date
-      .toLocaleDateString('en-US', options)
-      .replace(/\//g, '.')
-
-    return formattedDate
-  }
-
   return (
     <div className="flex gap-6 shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
       <div className="flex-3 py-6 pl-6">

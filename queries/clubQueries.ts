@@ -14,6 +14,7 @@ export const GET_CLUBS = gql`
       }
       home_description
       subline
+      manager
     }
   }
 `

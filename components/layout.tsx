@@ -6,14 +6,14 @@ import { GET_NAVIGATION, GET_SPONSORS } from '../queries/clubQueries'
 import { Sponsor } from '../types/clubTypes'
 
 import FooterWithSponsors from './Footer/FooterWithSponsors'
-import { NavigationPageProps } from './Navbar/Navigation'
+import { HeaderProps } from './Header/Header'
 
 type DashboardLayoutProps = {
   children: React.ReactNode
 }
 
-const DynamicNavigation = dynamic<NavigationPageProps>(
-  () => import('./Navbar/Navigation').then((m) => m.Navigation),
+const DynamicHeader = dynamic<HeaderProps>(
+  () => import('./Header/Header').then((m) => m.default),
   {
     ssr: false,
   }
@@ -46,7 +46,7 @@ export default function Layout({ children }: DashboardLayoutProps) {
 
   return (
     <>
-      <DynamicNavigation teams={navigationItems} />
+      <DynamicHeader teams={navigationItems} />
       <div className="max-w-screen-2xl mx-auto">
         <div className="w-full px-4 lg:px-10 md:px-8 sm:px-6">{children}</div>
       </div>
