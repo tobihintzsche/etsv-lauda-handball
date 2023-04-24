@@ -23,8 +23,8 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
 
   return (
     <div className="bg-yellow-400 mb-4 relative">
-      <div className="flex justify-between ">
-        <div className="text-2xl lg:text-3xl pl-14 my-auto">
+      <div className="flex justify-between md:py-2 px-4 md:px-8 ">
+        <div className="text-2xl md:text-4xl lg:text-3xl my-auto">
           <Link href="/">ETSV LAUDA HANDBALL</Link>
         </div>
         <button onClick={toggleNavbar} className="flex">
@@ -32,9 +32,6 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
         </button>
       </div>
 
-      <div className="absolute h-12 w-12 left-0 bottom-0">
-        <Image src={CuttedLogo} alt="ETSV Logo" height={48} width={48} />
-      </div>
       <MobileNavigationOverlay
         isOpen={isOpen}
         setIsOpen={setIsOpen}

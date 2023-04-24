@@ -12,7 +12,7 @@ const SponsorComponent: React.FC<SponsorComponentProps> = ({ sponsors }) => {
         <div className="shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
           <div className="p-6">
             <h1 className="text-4xl pb-4">SPONSOREN</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:flex gap-6">
+            <div className="flex flex-col md:flex-row gap-6">
               {sponsors.map((sponsor, index) => {
                 return (
                   <div

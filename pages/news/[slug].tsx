@@ -12,15 +12,17 @@ export interface TeamOverviewPageProps {
 
 const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({ news }) => {
   return (
-    <div className="flex gap-6 shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
-      <div className="flex-3 py-6 pl-6">
-        <h1 className="text-5xl">{news.title.toUpperCase()}</h1>
+    <div className="flex gap-6 flex-col lg:flex-row shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
+      <div className="lg:flex-3 py-6 px-6">
+        <h1 className="text-4xl lg:text-5xl">{news.title.toUpperCase()}</h1>
         <div>{formatTimestamp(news.createdAt)}</div>
 
-        <div className="text-xl pt-4">{news.description}</div>
+        <div className="text-lg lg:text-xl leading-8 pt-4">
+          {news.description}
+        </div>
       </div>
 
-      <div className="flex-2">
+      <div className="lg:flex-2">
         <img
           className="h-full object-cover"
           src={news.picture.url}

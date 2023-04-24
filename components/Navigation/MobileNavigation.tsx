@@ -4,20 +4,28 @@ import { SubNavigation } from './Subnavigation.desktop'
 
 export interface MobileNavigationProps {
   navigation: NavigationItem[]
+  handleClose: () => void
 }
 
 export const MobileNavigation: React.FC<MobileNavigationProps> = ({
   navigation,
+  handleClose,
 }) => {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-2">
       {navigation.map((navigationItem, index) => (
         <div className="flex flex-col" key={index}>
-          <MobileNavigationItem navigationItem={navigationItem.link} />
+          <MobileNavigationItem
+            navigationItem={navigationItem.link}
+            handleClose={handleClose}
+          />
           <div>
             {navigationItem.subNavigation &&
               navigationItem.link.href === navigationItem.link.href && (
-                <SubNavigation subNavigation={navigationItem.subNavigation} />
+                <SubNavigation
+                  subNavigation={navigationItem.subNavigation}
+                  handleClose={handleClose}
+                />
               )}
           </div>
         </div>

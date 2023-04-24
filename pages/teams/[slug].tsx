@@ -21,6 +21,18 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
   team,
   latestTeamNews,
 }) => {
+  const {
+    name,
+    team_picture,
+    team_picture_description,
+    handball_net_configuration,
+  } = team
+
+  const table_script = handball_net_configuration?.table_script
+  const gameplan_script = handball_net_configuration?.gameplan_script
+
+  const isTableOrGameplanDefined = Boolean(table_script || gameplan_script)
+
   if (!team)
     return (
       <p>
@@ -32,22 +44,22 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
     <div className="flex flex-col xl:flex-row gap-10">
       <div className="flex-2 flex flex-col gap-8">
         <div>
-          <div className="text-4xl lg:text-5xl">{team.name.toUpperCase()}</div>
+          <div className="text-4xl lg:text-5xl">{name.toUpperCase()}</div>
           <div className="shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
             <img
               className="object-cover w-full h-full"
-              src={team.team_picture.url}
-              alt={team.name}
+              src={team_picture.url}
+              alt={name}
             />
             {team.team_picture_description && (
               <p className="py-6 px-6 text-lg md:text-xl">
-                {team.team_picture_description}
+                {team_picture_description}
               </p>
             )}
           </div>
         </div>
         <TeamInformation team={team} />
-        {latestTeamNews && (
+        {latestTeamNews && isTableOrGameplanDefined && (
           <div>
             <h1 className="text-3xl lg:text-4xl pb-4">NEWS</h1>
             <TeamNewsComponent showLogo={true} teamNews={latestTeamNews} />
@@ -56,9 +68,20 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
       </div>
 
       <div className="flex flex-col lg:flex-row xl:flex-col gap-10 flex-1">
-        {team.handball_net_configuration?.table_script && <Table team={team} />}
-        {team.handball_net_configuration?.gameplan_script && (
-          <Gameplan team={team} />
+        {isTableOrGameplanDefined ? (
+          <>
+            {table_script && <Table team={team} />}
+            {gameplan_script && <Gameplan team={team} />}
+          </>
+        ) : (
+          <div>
+            {latestTeamNews && (
+              <>
+                <h1 className="text-3xl lg:text-4xl pb-4">NEWS</h1>
+                <TeamNewsComponent showLogo={false} teamNews={latestTeamNews} />
+              </>
+            )}
+          </div>
         )}
       </div>
     </div>

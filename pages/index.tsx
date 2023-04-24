@@ -7,6 +7,7 @@ import { GET_HOME_TEAM, SINGLE_TEAM_QUERY } from '../queries/teamQueries'
 import { Team } from '../types/teamTypes'
 import { TeamNews } from '../types/teamNewsTypes'
 import { Club } from '../types/clubTypes'
+import { Table } from '../components/HandballNet/Table'
 
 interface HomePageProps {
   team: Team
@@ -20,14 +21,16 @@ export default function HomePage({
   club,
 }: HomePageProps) {
   return (
-    <div className="py-10 flex flex-col">
-      <div className="flex flex-col lg:flex-row gap-4">
-        <div>
+    <div className="flex flex-col">
+      <div className="flex flex-col lg:flex-row gap-8">
+        <div className="flex-2">
           <TeamNewsComponent teamNews={latestHomeTeamNews} />
         </div>
-        <div>
-          <TeamNewsComponent teamNews={latestHomeTeamNews} />
-        </div>
+        {team.handball_net_configuration?.table_script && (
+          <div className="flex-1">
+            <Table team={team} />
+          </div>
+        )}
       </div>
       <div className="pt-10">
         <ClubInformation club={club} />

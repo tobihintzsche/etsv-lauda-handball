@@ -37,7 +37,7 @@ export function TeamNewsComponent({
           {teamNews.description.substring(0, 250) + ' ... '}
           <span className="text-amber-400">
             <Link href={`/news/${teamNews.slug}-${teamNews.id}`}>
-              <span>[Zum Bericht]</span>
+              <button className="hover:text-yellow-500">[Zum Bericht]</button>
             </Link>
           </span>
         </p>
