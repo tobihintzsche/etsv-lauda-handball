@@ -46,7 +46,7 @@ const TeamInformation: React.FC<TeamInformationProps> = ({ team }) => {
           })}
         </div>
       </div>
-      {(team.social_media.facebook || team.social_media.instagram) && (
+      {(team.social_media?.facebook || team.social_media?.instagram) && (
         <div className="flex-1">
           <h2 className="text-2xl pb-2 whitespace-nowrap">Social Media:</h2>
           <div className="flex gap-4">

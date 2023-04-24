@@ -15,9 +15,16 @@ export const GET_CLUBS = gql`
       home_description
       subline
       manager
+      imprint
+      privacy_content
+      google_maps_link
     }
   }
 `
+
+// imprint
+// privacy_content
+// google_maps_link
 
 export const GET_SPONSORS = gql`
   query SponsorRequest {
@@ -37,6 +44,7 @@ export const GET_NAVIGATION = gql`
     teams {
       name
       gender
+      slug
     }
   }
 `

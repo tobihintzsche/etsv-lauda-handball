@@ -11,6 +11,9 @@ export interface Club {
   home_description: string
   subline: string
   manager: string
+  imprint: string
+  privacy_content: string
+  google_maps_link: string
 }
 
 export interface Sponsor {

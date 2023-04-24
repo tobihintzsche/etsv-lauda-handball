@@ -8,6 +8,8 @@ export function enrichNavigationConfig(
 ): NavigationConfig {
   const sortedNavigationTeams = sortTeamsByGender(teams)
 
+  console.log(sortedNavigationTeams.men[0], teams)
+
   const enrichedNavigationConfig: NavigationConfig = {
     navigation: navigationConfig.navigation.map((item: NavigationItem) => {
       if (item.link.title === 'Teams') {

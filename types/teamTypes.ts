@@ -1,13 +1,13 @@
 import { TeamNews } from './teamNewsTypes'
 
 export interface HandballNetConfiguration {
-  gameplan_script: string
-  table_script: string
+  gameplan_script?: string
+  table_script?: string
 }
 
 export interface SocialMedia {
-  instagram: string
-  facebook: string
+  instagram?: string
+  facebook?: string
 }
 
 export interface HygraphPicture {
@@ -20,10 +20,10 @@ export interface Team {
   gender: 'Maennlich' | 'Weiblich' | 'Gemischt'
   practice_times: string[]
   coaches: string[]
-  handball_net_configuration: HandballNetConfiguration
+  handball_net_configuration?: HandballNetConfiguration
   slug: string
-  social_media: SocialMedia
+  social_media?: SocialMedia
   team_picture: HygraphPicture
-  team_picture_description: string
-  teamsNews: TeamNews[]
+  team_picture_description?: string
+  teamsNews?: TeamNews[]
 }

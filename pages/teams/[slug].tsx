@@ -10,6 +10,7 @@ import { Team } from '../../types/teamTypes'
 import { GET_TEAM_NEWS } from '../../queries/teamNewsQueries'
 import { TeamNews } from '../../types/teamNewsTypes'
 import TeamInformation from '../../components/Team/TeamInformationElement'
+import { ApolloError } from '@apollo/client'
 
 export interface TeamOverviewPageProps {
   team: Team
@@ -20,6 +21,13 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
   team,
   latestTeamNews,
 }) => {
+  if (!team)
+    return (
+      <p>
+        Das gesuchte Team existiert nicht, bitte überprüfen Sie ihre Eingaben
+        oder wählen Sie ein Team aus der Navigation aus.
+      </p>
+    )
   return (
     <div className="flex flex-col xl:flex-row gap-10">
       <div className="flex-2 flex flex-col gap-8">
@@ -48,8 +56,10 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
       </div>
 
       <div className="flex flex-col lg:flex-row xl:flex-col gap-10 flex-1">
-        <Table team={team} />
-        <Gameplan team={team} />
+        {team.handball_net_configuration?.table_script && <Table team={team} />}
+        {team.handball_net_configuration?.gameplan_script && (
+          <Gameplan team={team} />
+        )}
       </div>
     </div>
   )
@@ -57,8 +67,8 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
 
 type ServerSideProps = {
   props: {
-    team: Team
-    latestTeamNews: TeamNews
+    team: Team | null
+    latestTeamNews: TeamNews | null
   }
 }
 
@@ -67,23 +77,50 @@ export async function getServerSideProps({
 }: any): Promise<ServerSideProps> {
   const slug = params.slug as string
 
-  const { data } = await client.query({
-    query: SINGLE_TEAM_QUERY,
-    variables: { slug },
-  })
+  try {
+    const { data } = await client.query({
+      query: SINGLE_TEAM_QUERY,
+      variables: { slug },
+    })
 
-  const latestTeamNewsId: string = data.team.teamsNews[0].id
+    try {
+      const latestTeamNewsId: string = data.team.teamsNews[0].id
 
-  const { error, data: teamNewsResponse } = await client.query({
-    query: GET_TEAM_NEWS,
-    variables: { id: latestTeamNewsId },
-  })
+      const { data: teamNewsResponse } = await client.query({
+        query: GET_TEAM_NEWS,
+        variables: { id: latestTeamNewsId },
+      })
 
-  return {
-    props: {
-      team: data.team,
-      latestTeamNews: teamNewsResponse.teamNews,
-    },
+      return {
+        props: {
+          team: data.team,
+          latestTeamNews: teamNewsResponse.teamNews,
+        },
+      }
+    } catch (error) {
+      return {
+        props: {
+          team: data.team,
+          latestTeamNews: null,
+        },
+      }
+    }
+  } catch (error: any) {
+    if (error instanceof ApolloError) {
+      // Handle Apollo-specific errors here
+      console.error('ApolloError:', error.message)
+    } else {
+      // Handle generic errors here
+      console.error('Error:', error.message)
+    }
+
+    // Return a fallback value or redirect to an error page
+    return {
+      props: {
+        team: null,
+        latestTeamNews: null,
+      },
+    }
   }
 }
 
