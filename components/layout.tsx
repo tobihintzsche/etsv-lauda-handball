@@ -1,8 +1,7 @@
 import { useQuery } from '@apollo/client'
 import dynamic from 'next/dynamic'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { useEffect, useState } from 'react'
 import { GET_CLUBS, GET_NAVIGATION, GET_SPONSORS } from '../queries/clubQueries'
 import { Club, Sponsor } from '../types/clubTypes'
 
@@ -20,7 +19,7 @@ const DynamicHeader = dynamic<HeaderProps>(
   }
 )
 
-export default function Layout({ children }: DashboardLayoutProps) {
+export const Layout = ({ children }: DashboardLayoutProps) => {
   const { error, data: homeTeamResponse } = useQuery(GET_NAVIGATION)
 
   const { data: clubResponse } = useQuery(GET_CLUBS)

@@ -1,11 +1,10 @@
-/* eslint-disable react/react-in-jsx-scope */
 import '../styles/globals.css'
 import React from 'react'
 
-import { LayoutContextProvider } from '../LayoutContext'
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import { AppProps } from 'next/app'
-import Layout from '../components/Layout'
+import { LayoutContextProvider } from '../LayoutContext'
+import { Layout } from '../components/Layout'
 
 export default function App({
   Component,
