@@ -4,7 +4,7 @@ import '../styles/globals.css'
 import { LayoutContextProvider } from '../LayoutContext'
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import { AppProps } from 'next/app'
-import Layout from '../components/Layout'
+// import Layout from '../components/Layout'
 
 export default function App({
   Component,
@@ -18,9 +18,9 @@ export default function App({
   return (
     <ApolloProvider client={client}>
       <LayoutContextProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        {/* <Layout> */}
+        <Component {...pageProps} />
+        {/* </Layout> */}
       </LayoutContextProvider>
     </ApolloProvider>
   )
