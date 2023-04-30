@@ -39,21 +39,23 @@ function DesktopNavigationItem({
           )}
         >
           <Link href={navigationItem.link.href ?? ''}>
-            <button
-              onClick={(event) => {
-                if (isTouchInput) {
-                  event.preventDefault()
-                }
-              }}
-              onKeyDown={(event) => {
-                if (isTouchInput) {
-                  event.preventDefault()
-                }
-              }}
-              className="font-medium text-3xl"
-            >
-              {navigationItem.link.title}
-            </button>
+            <a>
+              <button
+                onClick={(event) => {
+                  if (isTouchInput) {
+                    event.preventDefault()
+                  }
+                }}
+                onKeyDown={(event) => {
+                  if (isTouchInput) {
+                    event.preventDefault()
+                  }
+                }}
+                className="font-medium text-3xl"
+              >
+                {navigationItem.link.title}
+              </button>
+            </a>
           </Link>
         </div>
         {navigationItem.subNavigation && (

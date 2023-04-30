@@ -1,5 +1,6 @@
-import client from '../apollo-client'
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
+import client from '../apollo-client'
 
 import { GET_CLUBS } from '../queries/clubQueries'
 import { Club } from '../types/clubTypes'

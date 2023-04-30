@@ -37,13 +37,20 @@ export function TeamNewsComponent({
           {teamNews.description.substring(0, 250) + ' ... '}
           <span className="text-amber-400">
             <Link href={`/news/${teamNews.slug}-${teamNews.id}`}>
-              <button className="hover:text-yellow-500">[Zum Bericht]</button>
+              <a>
+                <button className="hover:text-yellow-500">[Zum Bericht]</button>
+              </a>
             </Link>
           </span>
         </p>
         <Link href={`/news/${teamNews.slug}-${teamNews.id}`}>
           <a>
-            <img className="object-cover w-full" src={teamNews.picture.url} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="object-cover w-full"
+              src={teamNews.picture.url}
+              alt="test"
+            />
           </a>
         </Link>
       </div>

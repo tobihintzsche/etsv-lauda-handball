@@ -19,6 +19,7 @@ const SponsorComponent: React.FC<SponsorComponentProps> = ({ sponsors }) => {
                     className="flex-1 shadow-[5px_5px_20px_3px_rgba(0,0,0,0.25)] "
                     key={index}
                   >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={sponsor.image.url}
                       alt={sponsor.name}

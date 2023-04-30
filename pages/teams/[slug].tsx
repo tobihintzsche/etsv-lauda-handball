@@ -46,6 +46,7 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
         <div>
           <div className="text-3xl lg:text-5xl">{name.toUpperCase()}</div>
           <div className="shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="object-cover w-full h-full"
               src={team_picture.url}
@@ -65,9 +66,11 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
             <TeamNewsComponent showLogo={true} teamNews={latestTeamNews} />
             <div className="flex justify-center pt-4">
               <Link href={'/news'}>
-                <button className="bg-yellow-400 rounded-md p-2 text-xl lg:text-2xl">
-                  ZU ALLEN NEWS
-                </button>
+                <a>
+                  <button className="bg-yellow-400 rounded-md p-2 text-xl lg:text-2xl">
+                    ZU ALLEN NEWS
+                  </button>
+                </a>
               </Link>
             </div>
           </div>

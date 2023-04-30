@@ -29,6 +29,7 @@ const ClubInformation: React.FC<ClubInformationProps> = ({ club }) => {
         />
       </div>
       <div className="lg:flex-1">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="h-full object-cover"
           src={club.picture.url}

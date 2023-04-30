@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/inline-script-id */
 import Script from 'next/script'
 import React from 'react'
 

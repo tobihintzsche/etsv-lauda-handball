@@ -25,6 +25,7 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({ news }) => {
       </div>
 
       <div className="lg:flex-2">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="h-full object-cover"
           src={news.picture.url}
