@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { navigationConfig } from '../../components/Navigation/navigationConfig'
+import React from 'react'
 
 import { genderMapping } from '../../components/Navigation/Subnavigation.desktop'
 import { GET_NAVIGATION } from '../../queries/clubQueries'
@@ -44,7 +45,7 @@ export default function Teams() {
 
                             <div className="flex flex-col">
                               {teams.map((team, index) => (
-                                <Link href={`${team.href}`}>
+                                <Link key={index} href={`${team.href}`}>
                                   <a className=" hover:text-yellow-500 text-2xl xl:text-3xl">
                                     {team.title}
                                   </a>

@@ -3,6 +3,7 @@ import client from '../../apollo-client'
 import { TeamNewsComponent } from '../../components/Team/TeamNews'
 import { GET_TEAMS_NEWS } from '../../queries/teamNewsQueries'
 import { TeamNews } from '../../types/teamNewsTypes'
+import React from 'react'
 
 interface NewsPageProps {
   teamsNews: TeamNews[]

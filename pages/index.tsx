@@ -1,4 +1,6 @@
 import client from '../apollo-client'
+import React from 'react'
+
 import ClubInformation from '../components/Team/ClubInformation'
 import { TeamNewsComponent } from '../components/Team/TeamNews'
 import { GET_CLUBS } from '../queries/clubQueries'

@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client'
 import dynamic from 'next/dynamic'
-import Head from 'next/head'
+import React from 'react'
+
 import { useEffect, useState } from 'react'
 import { GET_CLUBS, GET_NAVIGATION, GET_SPONSORS } from '../queries/clubQueries'
 import { Club, Sponsor } from '../types/clubTypes'

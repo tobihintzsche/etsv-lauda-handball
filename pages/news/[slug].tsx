@@ -1,5 +1,7 @@
 import client from '../../apollo-client'
 
+import React from 'react'
+
 import { Team } from '../../types/teamTypes'
 import { TeamNews } from '../../types/teamNewsTypes'
 import { GET_TEAM_NEWS } from '../../queries/teamNewsQueries'

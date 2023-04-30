@@ -1,4 +1,5 @@
 import client from '../apollo-client'
+import React from 'react'
 
 import { GET_CLUBS } from '../queries/clubQueries'
 import { Club } from '../types/clubTypes'

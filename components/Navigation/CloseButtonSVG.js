@@ -1,3 +1,5 @@
+import React from 'react'
+
 export const CloseButtonSVG = (
   <svg className="h-10 w-10" viewBox="0 0 24 24" fill="none">
     <path

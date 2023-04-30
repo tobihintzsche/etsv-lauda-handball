@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { NavigationConfig } from '../../types/navigationTypes'
 import { CloseButtonSVG } from './CloseButtonSVG'
 import { MobileNavigation } from './MobileNavigation'
+import React from 'react'
 
 interface MobileNavigationOverlayProps {
   isOpen: boolean

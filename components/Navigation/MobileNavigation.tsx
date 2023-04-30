@@ -1,6 +1,7 @@
 import { NavigationItem } from '../../types/navigationTypes'
 import { MobileNavigationItem } from './MobileNavigationItem'
 import { SubNavigation } from './Subnavigation.desktop'
+import React from 'react'
 
 export interface MobileNavigationProps {
   navigation: NavigationItem[]
@@ -13,7 +14,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
 }) => {
   return (
     <div className="flex flex-col gap-2">
-      {navigation.map((navigationItem, index) => (
+      {navigation.map((navigationItem: NavigationItem, index) => (
         <div className="flex flex-col" key={index}>
           <MobileNavigationItem
             navigationItem={navigationItem.link}

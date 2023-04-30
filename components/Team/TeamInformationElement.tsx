@@ -19,7 +19,7 @@ const TeamInformation: React.FC<TeamInformationProps> = ({ team }) => {
         <div className="flex pt-2 flex-col gap-4">
           {team.coaches.map((coach, index) => {
             return (
-              <div className="text-lg lg:text-xl">
+              <div className="text-lg lg:text-xl" key={index}>
                 <div>{coach.name.toUpperCase()}</div>
                 <div>{coach.telephone}</div>
                 <div>{coach.eMail}</div>
@@ -35,7 +35,7 @@ const TeamInformation: React.FC<TeamInformationProps> = ({ team }) => {
         <div className="flex flex-col gap-2 pr-10">
           {team.practice_times.map((practiceTime, index) => {
             return (
-              <div className="text-lg lg:text-xl pt-2">
+              <div className="text-lg lg:text-xl pt-2" key={index}>
                 <div className="flex flex-wrap">
                   <div className="whitespace-nowrap">{practiceTime.date}</div>
                 </div>

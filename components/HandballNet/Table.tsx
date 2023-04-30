@@ -1,5 +1,6 @@
 import Script from 'next/script'
 import { Team } from '../../types/teamTypes'
+import React from 'react'
 
 export interface TableProps {
   table_script: string

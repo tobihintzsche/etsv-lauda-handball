@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
+import Link from 'next/link'
 import Logo from '../../images/Handball_Logo.svg'
 
-import Link from 'next/link'
 import DesktopNavigationItem from '../Navigation/NavigationItem.desktop'
 import { NavigationConfig } from '../../types/navigationTypes'
 
