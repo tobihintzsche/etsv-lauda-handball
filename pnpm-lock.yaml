@@ -2,12 +2,16 @@ lockfileVersion: 5.4
 
 specifiers:
   '@apollo/client': ^3.5.10
+  '@next/eslint-plugin-next': ^13.3.2
+  '@types/lodash': ^4.14.192
   '@types/node': 17.0.19
   '@types/react': 17.0.39
   '@typescript-eslint/eslint-plugin': ^5.12.1
   '@typescript-eslint/parser': ^5.12.1
   autoprefixer: ^10.4.2
   classnames: ^2.3.2
+  deepmerge: ^4.3.1
+  dompurify: ^3.0.1
   eslint: ^8.9.0
   eslint-config-airbnb: ^19.0.4
   eslint-config-next: 12.1.0
@@ -18,6 +22,7 @@ specifiers:
   eslint-plugin-react-hooks: ^4.3.0
   graphql: ^16.3.0
   graphql-request: ^4.0.0
+  lodash: ^4.17.21
   next: 12.1.0
   next-mdx-remote: ^4.0.0
   postcss: ^8.4.6
@@ -32,8 +37,11 @@ specifiers:
 dependencies:
   '@apollo/client': 3.7.5_4acpsgwrblrf7yma4ztoevvkgq
   classnames: 2.3.2
+  deepmerge: 4.3.1
+  dompurify: 3.0.2
   graphql: 16.6.0
   graphql-request: 4.3.0_graphql@16.6.0
+  lodash: 4.17.21
   next: 12.1.0_sfoxds7t5ydpegc3knd667wn6m
   next-mdx-remote: 4.3.0_sfoxds7t5ydpegc3knd667wn6m
   react: 17.0.2
@@ -42,6 +50,8 @@ dependencies:
   swr: 1.3.0_react@17.0.2
 
 devDependencies:
+  '@next/eslint-plugin-next': 13.3.2
+  '@types/lodash': 4.14.194
   '@types/node': 17.0.19
   '@types/react': 17.0.39
   '@typescript-eslint/eslint-plugin': 5.49.0_ru2xyr6vqibtitgmmxb4q5fvru
@@ -189,6 +199,12 @@ packages:
 
   /@next/eslint-plugin-next/12.1.0:
     resolution: {integrity: sha512-WFiyvSM2G5cQmh32t/SiQuJ+I2O+FHVlK/RFw5b1565O2kEM/36EXncjt88Pa+X5oSc+1SS+tWxowWJd1lqI+g==}
+    dependencies:
+      glob: 7.1.7
+    dev: true
+
+  /@next/eslint-plugin-next/13.3.2:
+    resolution: {integrity: sha512-YHugXBtXWVUjSMRirZPxDlDn3LvYpuCqaRlIHgKA52Q6PVtYtmFjhzYQ8LuN9mKCKF5NOZcrf3jya2uL8WQwuw==}
     dependencies:
       glob: 7.1.7
     dev: true
@@ -344,6 +360,10 @@ packages:
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+    dev: true
+
+  /@types/lodash/4.14.194:
+    resolution: {integrity: sha512-r22s9tAS7imvBt2lyHC9B8AGwWnXaYb1tY09oyLkXDs4vArpYJzw09nj8MLx5VfciBPGIb+ZwG0ssYnEPJxn/g==}
     dev: true
 
   /@types/mdast/3.0.10:
@@ -918,6 +938,11 @@ packages:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
     dev: true
 
+  /deepmerge/4.3.1:
+    resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   /define-properties/1.1.4:
     resolution: {integrity: sha512-uckOqKcfaVvtBdsVkdPv3XjveQJsNQqmhXgRi8uhvWWuPYZCNlzT8qAyblUgNoXdHdjMTzAqeGjAoli8f+bzPA==}
     engines: {node: '>= 0.4'}
@@ -983,6 +1008,10 @@ packages:
     dependencies:
       esutils: 2.0.3
     dev: true
+
+  /dompurify/3.0.2:
+    resolution: {integrity: sha512-B8c6JdiEpxAKnd8Dm++QQxJL4lfuc757scZtcapj6qjTjrQzyq5iAyznLKVvK+77eYNiFblHBlt7MM0fOeqoKw==}
+    dev: false
 
   /electron-to-chromium/1.4.284:
     resolution: {integrity: sha512-M8WEXFuKXMYMVr45fo8mq0wUrrJHheiKZf6BArTKk9ZBYCKJEOU5H8cdWgDT+qCVZf7Na4lVUaZsA+h6uA9+PA==}
@@ -2142,6 +2171,10 @@ packages:
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
+
+  /lodash/4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: false
 
   /longest-streak/3.1.0:
     resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
