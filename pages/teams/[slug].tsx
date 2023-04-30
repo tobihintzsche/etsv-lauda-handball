@@ -77,8 +77,12 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
       <div className="flex flex-col lg:flex-row xl:flex-col gap-10 flex-1">
         {isTableOrGameplanDefined ? (
           <>
-            {table_script && <Table team={team} />}
-            {gameplan_script && <Gameplan team={team} />}
+            {table_script && (
+              <Table table_script={table_script} name={team.name} />
+            )}
+            {gameplan_script && (
+              <Gameplan gameplan_script={gameplan_script} name={team.name} />
+            )}
           </>
         ) : (
           <div>

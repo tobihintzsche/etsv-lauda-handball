@@ -2,10 +2,11 @@ import Script from 'next/script'
 import { Team } from '../../types/teamTypes'
 
 export interface TableProps {
-  team: Team
+  table_script: string
+  name: string
 }
 
-export const Table: React.FC<TableProps> = ({ team }) => {
+export const Table: React.FC<TableProps> = ({ table_script, name }) => {
   return (
     <>
       <Script
@@ -16,14 +17,11 @@ export const Table: React.FC<TableProps> = ({ team }) => {
 
       <Script
         dangerouslySetInnerHTML={{
-          __html: team.handball_net_configuration.table_script.replace(
-            /<\/?script>/gi,
-            ''
-          ),
+          __html: table_script.replace(/<\/?script>/gi, ''),
         }}
       />
       <div className="w-full">
-        <div className="text-3xl lg:text-4xl">{`${team.name.toUpperCase()} TABELLE`}</div>
+        <div className="text-3xl lg:text-4xl">{`${name.toUpperCase()} TABELLE`}</div>
         <div id="handball-tabelle" />
       </div>
     </>

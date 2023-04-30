@@ -15,7 +15,7 @@ export interface SubNavigationProps {
     woman?: NavigationSingleLink[]
     mixed?: NavigationSingleLink[]
   }
-  handleClose: () => void
+  handleClose?: () => void
 }
 
 export const SubNavigation: React.FC<SubNavigationProps> = ({
@@ -32,10 +32,12 @@ export const SubNavigation: React.FC<SubNavigationProps> = ({
                 <div className="text-3xl mb-1 lg:text-3xl">
                   {genderMapping[gender].toUpperCase()}
                 </div>
-                <SubNavigationItems
-                  subNavigationGender={teams}
-                  handleClose={handleClose}
-                />
+                {handleClose && (
+                  <SubNavigationItems
+                    subNavigationGender={teams}
+                    handleClose={handleClose}
+                  />
+                )}
               </div>
             )
         })}

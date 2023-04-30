@@ -2,10 +2,14 @@ import Script from 'next/script'
 import { Team } from '../../types/teamTypes'
 
 export interface GameplanProps {
-  team: Team
+  gameplan_script: string
+  name: string
 }
 
-export const Gameplan: React.FC<GameplanProps> = ({ team }) => {
+export const Gameplan: React.FC<GameplanProps> = ({
+  gameplan_script,
+  name,
+}) => {
   return (
     <>
       <Script
@@ -15,14 +19,11 @@ export const Gameplan: React.FC<GameplanProps> = ({ team }) => {
       />
       <Script
         dangerouslySetInnerHTML={{
-          __html: team.handball_net_configuration.gameplan_script.replace(
-            /<\/?script>/gi,
-            ''
-          ),
+          __html: gameplan_script.replace(/<\/?script>/gi, ''),
         }}
       />
       <div className="w-full">
-        <div className="text-3xl lg:text-4xl">{`${team.name.toUpperCase()} SPIELPLAN`}</div>
+        <div className="text-3xl lg:text-4xl">{`${name.toUpperCase()} SPIELPLAN`}</div>
         <div id="handball-spielplan" />
       </div>
     </>

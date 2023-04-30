@@ -28,7 +28,12 @@ export default function HomePage({
         </div>
         {team.handball_net_configuration?.table_script && (
           <div className="flex-1">
-            <Table team={team} />
+            {team.handball_net_configuration.gameplan_script && (
+              <Table
+                table_script={team.handball_net_configuration.gameplan_script}
+                name={team.name}
+              />
+            )}
           </div>
         )}
       </div>
