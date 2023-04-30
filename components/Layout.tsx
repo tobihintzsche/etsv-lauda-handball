@@ -69,6 +69,7 @@ export const Layout = ({ children }: DashboardLayoutProps) => {
         <FooterWithSponsors
           sponsors={sponsors}
           googleMapsLink={club?.google_maps_link}
+          cmsLink={club?.cmsLink}
         />
       </div>
     </div>

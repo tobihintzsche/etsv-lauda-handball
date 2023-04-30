@@ -6,18 +6,20 @@ import SponsorComponent from './Sponsors'
 interface FooterWithSponsorsProps {
   sponsors: Sponsor[]
   googleMapsLink?: string
+  cmsLink: string
 }
 
 const FooterWithSponsors: React.FC<FooterWithSponsorsProps> = ({
   sponsors,
   googleMapsLink,
+  cmsLink,
 }) => {
   return (
     <div>
       <div className="py-10">
         <SponsorComponent sponsors={sponsors} />
       </div>
-      <Footer googleMapsLink={googleMapsLink} />
+      <Footer googleMapsLink={googleMapsLink} cmsLink={cmsLink} />
     </div>
   )
 }

@@ -16,6 +16,7 @@ export interface Club {
   imprint: string
   privacy_content: string
   google_maps_link: string
+  cmsLink: string
 }
 
 export interface Sponsor {

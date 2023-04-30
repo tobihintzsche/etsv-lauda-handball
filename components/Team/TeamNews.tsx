@@ -51,8 +51,14 @@ export function TeamNewsComponent({
         </Link>
       </div>
       {showLogo && (
-        <div className="absolute lg:h-[250px] lg:w-[250px] md:h-[200px] md:w-[200px] h-[150px] w-[150px] left-0 bottom-0">
-          <Image src={CuttedLogo} alt="ETSV Logo" height={250} width={250} />
+        <div className="absolute lg:h-[250px] lg:w-[250px] md:h-[200px] md:w-[200px] h-[100px] w-[100px] left-0 bottom-0">
+          <Image
+            src={CuttedLogo}
+            alt="ETSV Logo"
+            height={250}
+            width={250}
+            className="h-full w-full"
+          />
         </div>
       )}
     </div>

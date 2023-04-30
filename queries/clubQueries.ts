@@ -24,6 +24,7 @@ export const GET_CLUBS = gql`
       imprint
       privacy_content
       google_maps_link
+      cmsLink
     }
   }
 `

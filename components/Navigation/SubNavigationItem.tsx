@@ -6,7 +6,7 @@ import { NavigationSingleLink } from '../../types/navigationTypes'
 export interface SubNavigationItemProps {
   team: NavigationSingleLink
   classNames: string
-  handleClose: () => void
+  handleClose?: () => void
 }
 
 export const SubNavigationItem: React.FC<SubNavigationItemProps> = ({
