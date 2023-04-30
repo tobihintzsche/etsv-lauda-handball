@@ -16,8 +16,18 @@ export const SINGLE_TEAM_QUERY = gql`
     team(where: { slug: $slug }) {
       name
       gender
-      practice_times
-      coaches
+      practice_times {
+        date
+        practiceLocation {
+          name
+          google_maps_link
+        }
+      }
+      coaches {
+        name
+        telephone
+        eMail
+      }
       handball_net_configuration {
         gameplan_script
         table_script

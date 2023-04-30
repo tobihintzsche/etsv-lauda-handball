@@ -23,7 +23,7 @@ export const Table: React.FC<TableProps> = ({ team }) => {
         }}
       />
       <div className="w-full">
-        <h1 className="text-3xl lg:text-4xl mb-4">{`${team.name} Tabelle`}</h1>
+        <div className="text-3xl lg:text-4xl">{`${team.name.toUpperCase()} TABELLE`}</div>
         <div id="handball-tabelle" />
       </div>
     </>

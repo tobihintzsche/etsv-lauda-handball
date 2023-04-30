@@ -55,7 +55,7 @@ a {
 }
 
 .hb-embed {
-  font-size: medium !important;
+  font-size: small !important;
 }
 
 @media screen and (min-width: 768px) {

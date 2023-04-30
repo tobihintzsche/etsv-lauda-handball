@@ -14,7 +14,13 @@ export const GET_CLUBS = gql`
       }
       home_description
       subline
-      manager
+      manager {
+        ... on ContactPerson {
+          name
+          eMail
+          telephone
+        }
+      }
       imprint
       privacy_content
       google_maps_link

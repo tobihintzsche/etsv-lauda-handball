@@ -44,7 +44,7 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
     <div className="flex flex-col xl:flex-row gap-10">
       <div className="flex-2 flex flex-col gap-8">
         <div>
-          <div className="text-4xl lg:text-5xl">{name.toUpperCase()}</div>
+          <div className="text-3xl lg:text-5xl">{name.toUpperCase()}</div>
           <div className="shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
             <img
               className="object-cover w-full h-full"
@@ -52,7 +52,7 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
               alt={name}
             />
             {team.team_picture_description && (
-              <p className="py-6 px-6 text-lg md:text-xl">
+              <p className="py-6 px-6 text-md md:text-lg">
                 {team_picture_description}
               </p>
             )}
@@ -61,8 +61,15 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
         <TeamInformation team={team} />
         {latestTeamNews && isTableOrGameplanDefined && (
           <div>
-            <h1 className="text-3xl lg:text-4xl pb-4">NEWS</h1>
+            <h1 className="text-3xl lg:text-4xl">NEWS</h1>
             <TeamNewsComponent showLogo={true} teamNews={latestTeamNews} />
+            <div className="flex justify-center pt-4">
+              <Link href={'/news'}>
+                <button className="bg-yellow-400 rounded-md p-2 text-xl lg:text-2xl">
+                  ZU ALLEN NEWS
+                </button>
+              </Link>
+            </div>
           </div>
         )}
       </div>
@@ -77,7 +84,7 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
           <div>
             {latestTeamNews && (
               <>
-                <h1 className="text-3xl lg:text-4xl pb-4">NEWS</h1>
+                <h1 className="text-3xl lg:text-4xl">NEWS</h1>
                 <TeamNewsComponent showLogo={false} teamNews={latestTeamNews} />
               </>
             )}

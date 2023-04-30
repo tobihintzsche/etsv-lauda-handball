@@ -15,58 +15,43 @@ export interface TeamInformationProps {
 const TeamInformation: React.FC<TeamInformationProps> = ({ team }) => {
   return (
     <div className="p-6 flex flex-wrap gap-4 shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
-      <div className="flex-3">
-        <h2 className="text-2xl">Trainer:</h2>
-        <div className="flex flex-col gap-2 pr-10">
+      <div className="flex-1">
+        <h2 className="text-2xl w-min whitespace-nowrap bg-black text-yellow-400 shadow-[0px_0px_0px_3px_rgba(0,0,0,1)]">
+          TRAINER:
+        </h2>
+        <div className="flex pt-2 flex-col gap-4">
           {team.coaches.map((coach, index) => {
             return (
-              <div
-                key={index}
-                className="text-lg md:text-xl whitespace-pre-wrap"
-                dangerouslySetInnerHTML={{
-                  __html: coach,
-                }}
-              />
+              <div className="text-lg lg:text-xl">
+                <div>{coach.name.toUpperCase()}</div>
+                <div>{coach.telephone}</div>
+                <div>{coach.eMail}</div>
+              </div>
             )
           })}
         </div>
       </div>
       <div className="flex-1">
-        <h2 className="text-2xl">Trainingszeiten:</h2>
+        <h2 className="text-2xl w-min whitespace-nowrap bg-black text-yellow-400 shadow-[0px_0px_0px_3px_rgba(0,0,0,1)]">
+          TRAININGSZEITEN:
+        </h2>
         <div className="flex flex-col gap-2 pr-10">
           {team.practice_times.map((practiceTime, index) => {
             return (
-              <div
-                className="text-lg md:text-xl whitespace-nowrap"
-                dangerouslySetInnerHTML={{
-                  __html: practiceTime,
-                }}
-              />
+              <div className="text-lg lg:text-xl pt-2">
+                <div className="flex flex-wrap">
+                  <div className="whitespace-nowrap">{practiceTime.date}</div>
+                </div>
+                <div className="hover:text-blue-900">
+                  <Link href={practiceTime.practiceLocation.google_maps_link}>
+                    {practiceTime.practiceLocation.name}
+                  </Link>
+                </div>
+              </div>
             )
           })}
         </div>
       </div>
-      {(team.social_media?.facebook || team.social_media?.instagram) && (
-        <div className="flex-1">
-          <h2 className="text-2xl pb-2 whitespace-nowrap">Social Media:</h2>
-          <div className="flex gap-4">
-            {team.social_media.facebook && (
-              <Link href={team.social_media.facebook}>
-                <a>
-                  <Image src={FacebookLogo} width={50} height={50} />
-                </a>
-              </Link>
-            )}
-            {team.social_media.instagram && (
-              <Link href={team.social_media.instagram}>
-                <a>
-                  <Image src={InstagramLogo} width={50} height={50} />
-                </a>
-              </Link>
-            )}
-          </div>
-        </div>
-      )}
     </div>
   )
 }

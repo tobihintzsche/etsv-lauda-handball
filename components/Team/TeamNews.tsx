@@ -33,7 +33,7 @@ export function TeamNewsComponent({
         >
           {teamNews.title.toUpperCase()}
         </h1>
-        <p className="text-lg lg:text-xl leading-8 py-8">
+        <p className="text-lg lg:text-xl leading-8 py-1">
           {teamNews.description.substring(0, 250) + ' ... '}
           <span className="text-amber-400">
             <Link href={`/news/${teamNews.slug}-${teamNews.id}`}>
@@ -41,7 +41,11 @@ export function TeamNewsComponent({
             </Link>
           </span>
         </p>
-        <img className="object-cover w-full" src={teamNews.picture.url} />
+        <Link href={`/news/${teamNews.slug}-${teamNews.id}`}>
+          <a>
+            <img className="object-cover w-full" src={teamNews.picture.url} />
+          </a>
+        </Link>
       </div>
       {showLogo && (
         <div className="absolute lg:h-[250px] lg:w-[250px] md:h-[200px] md:w-[200px] h-[150px] w-[150px] left-0 bottom-0">

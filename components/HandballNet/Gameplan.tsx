@@ -22,7 +22,7 @@ export const Gameplan: React.FC<GameplanProps> = ({ team }) => {
         }}
       />
       <div className="w-full">
-        <h1 className="text-3xl lg:text-4xl mb-4">{`${team.name} Spielplan`}</h1>
+        <div className="text-3xl lg:text-4xl">{`${team.name.toUpperCase()} SPIELPLAN`}</div>
         <div id="handball-spielplan" />
       </div>
     </>
