@@ -3,7 +3,7 @@ import React from 'react'
 
 interface FooterProps {
   googleMapsLink?: string
-  cmsLink: string
+  cmsLink?: string
 }
 
 export const Footer: React.FC<FooterProps> = ({ googleMapsLink, cmsLink }) => {
