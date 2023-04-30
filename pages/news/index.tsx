@@ -88,7 +88,6 @@ export default function NewsPage({ teamsNews }: NewsPageProps) {
         {paginationData.map((teamNews, index) => {
           return (
             <div key={index}>
-              <h1>{index}</h1>
               <TeamNewsComponent teamNews={teamNews} showLogo={false} />
             </div>
           )
