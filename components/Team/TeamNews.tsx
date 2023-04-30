@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Image from 'next/image'
-import CuttedLogo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/images//Handball_Logo_Cutted_Square_Project.svg'
+import CuttedLogo from '../../images/Handball_Logo_Cutted_Square_Project.svg'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { TeamNews } from '../../types/teamNewsTypes'

@@ -1,8 +1,7 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 
-import CuttedLogo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/images//Handball_Logo_Cutted_Square_Project.svg'
-import BurgerMenu from '/Users/tobiashintzsche/dev/etsv-lauda-handball/images//BurgerMenu.svg'
+import BurgerMenu from '../../images/BurgerMenu.svg'
 
 import Link from 'next/link'
 import { NavigationConfig } from '../../types/navigationTypes'

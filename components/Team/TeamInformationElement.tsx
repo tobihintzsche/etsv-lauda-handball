@@ -5,9 +5,6 @@ import Image from 'next/image'
 import { Team } from '../../types/teamTypes'
 import Link from 'next/link'
 
-import InstagramLogo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/images//Instagram_Logo.svg'
-import FacebookLogo from '/Users/tobiashintzsche/dev/etsv-lauda-handball/images//Facebook_Logo.svg'
-
 export interface TeamInformationProps {
   team: Team
 }
