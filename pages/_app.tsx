@@ -6,6 +6,13 @@ import { AppProps } from 'next/app'
 import { LayoutContextProvider } from '../LayoutContext'
 import { Layout } from '../components/Layout'
 
+import { Hammersmith_One } from '@next/font/google'
+
+const hammersmithOne = Hammersmith_One({
+  subsets: ['latin'],
+  weight: '400',
+})
+
 export default function App({
   Component,
   pageProps,
@@ -18,9 +25,11 @@ export default function App({
   return (
     <ApolloProvider client={client}>
       <LayoutContextProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <main className={hammersmithOne.className}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </main>
       </LayoutContextProvider>
     </ApolloProvider>
   )

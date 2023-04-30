@@ -18,7 +18,7 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({
       <div className="max-w-screen-2xl mx-auto flex justify-center">
         <div className="flex justify-between w-full lg:mx-10 md:mx-8 sm:mx-6">
           <div>
-            <Link href="/">
+            <Link href="/" legacyBehavior>
               <a className="inline-flex items-center py-2 ">
                 <span className="text-m text-black uppercase font-medium tracking-wide mr-2 md:text-3xl">
                   ETSV LAUDA HANDBALL

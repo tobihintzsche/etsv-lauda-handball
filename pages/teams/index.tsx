@@ -45,7 +45,11 @@ export default function Teams() {
 
                             <div className="flex flex-col">
                               {teams.map((team, index) => (
-                                <Link key={index} href={`${team.href}`}>
+                                <Link
+                                  key={index}
+                                  href={`${team.href}`}
+                                  legacyBehavior
+                                >
                                   <a className=" hover:text-yellow-500 text-2xl xl:text-3xl">
                                     {team.title}
                                   </a>

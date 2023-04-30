@@ -15,7 +15,7 @@ export const MobileNavigationItem: React.FC<MobileNavigationItemProps> = ({
   const { href, title } = navigationItem
 
   return (
-    <Link href={href}>
+    <Link href={href} legacyBehavior>
       <a
         className="mr-4 hover:text-yellow-900 w-max text-4xl"
         onClick={handleClose}

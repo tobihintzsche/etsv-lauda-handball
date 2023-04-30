@@ -15,7 +15,7 @@ export const SubNavigationItem: React.FC<SubNavigationItemProps> = ({
   handleClose,
 }) => {
   return (
-    <Link href={`${team.href}`}>
+    <Link href={`${team.href}`} legacyBehavior>
       <a className={classNames} onClick={handleClose}>
         {team.title}
       </a>
