@@ -5,7 +5,6 @@ import { LayoutContextProvider } from '../LayoutContext'
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import { AppProps } from 'next/app'
 import Layout from '../components/Layout'
-import Error from 'next/error'
 
 export default function App({
   Component,
@@ -15,15 +14,6 @@ export default function App({
     uri: 'https://api-eu-central-1.graphcms.com/v2/cl0874wb42pah01xr1jnmabfu/master',
     cache: new InMemoryCache(),
   })
-
-  // if (pageProps) {
-  //   return (
-  //     <Error
-  //       statusCode={pageProps.error.statusCode}
-  //       title={pageProps.error.message}
-  //     />
-  //   )
-  // }
 
   return (
     <ApolloProvider client={client}>
