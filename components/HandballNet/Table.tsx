@@ -2,7 +2,6 @@
 import Script from 'next/script'
 import { Team } from '../../types/teamTypes'
 import React, { useEffect, useState } from 'react'
-import ErrorBoundary from '../ErrorBoundary'
 
 export interface TableProps {
   table_script: string

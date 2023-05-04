@@ -10,7 +10,6 @@ import { GET_TEAM_NEWS } from '../../queries/teamNewsQueries'
 import { TeamNews } from '../../types/teamNewsTypes'
 import TeamInformation from '../../components/Team/TeamInformationElement'
 import { ApolloError } from '@apollo/client'
-import { ErrorBoundary } from '../../components/ErrorBoundary'
 import { Table } from '../../components/HandballNet/Table'
 
 export interface TeamOverviewPageProps {
@@ -81,9 +80,7 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
         {isTableOrGameplanDefined ? (
           <>
             {table_script && (
-              // <ErrorBoundary fallback={<div>Error: Could not load table</div>}>
               <Table table_script={table_script} name={team.name} />
-              // </ErrorBoundary>
             )}
             {gameplan_script && (
               <Gameplan gameplan_script={gameplan_script} name={team.name} />
