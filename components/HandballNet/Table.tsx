@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/inline-script-id */
 import Script from 'next/script'
 import { Team } from '../../types/teamTypes'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import ErrorBoundary from '../ErrorBoundary'
 
 export interface TableProps {
   table_script: string
@@ -9,6 +10,20 @@ export interface TableProps {
 }
 
 export const Table: React.FC<TableProps> = ({ table_script, name }) => {
+  const [error, setError] = useState<boolean>(false)
+
+  useEffect(() => {
+    try {
+      eval(
+        table_script
+          .replace(/<\/?script>/gi, '')
+          .replace('handball-tabelle', `handball-tabelle-${name}`)
+      )
+    } catch (error) {
+      setError(true)
+    }
+  }, [table_script])
+
   return (
     <>
       <Script
@@ -17,15 +32,12 @@ export const Table: React.FC<TableProps> = ({ table_script, name }) => {
         }}
       />
 
-      <Script
-        dangerouslySetInnerHTML={{
-          __html: table_script.replace(/<\/?script>/gi, ''),
-        }}
-      />
-      <div className="w-full">
-        <div className="text-3xl lg:text-4xl">{`${name.toUpperCase()} TABELLE`}</div>
-        <div id="handball-tabelle" />
-      </div>
+      {!error && (
+        <div className="w-full">
+          <div className="text-3xl lg:text-4xl">{`${name.toUpperCase()} TABELLE`}</div>
+          <div id={`handball-tabelle-${name}`} />
+        </div>
+      )}
     </>
   )
 }

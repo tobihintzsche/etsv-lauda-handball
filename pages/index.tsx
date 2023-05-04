@@ -10,6 +10,7 @@ import { Team } from '../types/teamTypes'
 import { TeamNews } from '../types/teamNewsTypes'
 import { Club } from '../types/clubTypes'
 import { Table } from '../components/HandballNet/Table'
+import classNames from 'classnames'
 
 interface HomePageProps {
   team: Team
@@ -23,7 +24,14 @@ export default function HomePage({
   club,
 }: HomePageProps) {
   return (
-    <div className="flex flex-col">
+    <div
+      className={classNames(
+        'flex',
+        team.handball_net_configuration?.table_script
+          ? 'flex-col'
+          : 'flex-col lg:flex-row gap-8'
+      )}
+    >
       <div className="flex flex-col lg:flex-row gap-8">
         <div className="flex-2">
           <TeamNewsComponent teamNews={latestHomeTeamNews} />
@@ -39,8 +47,18 @@ export default function HomePage({
           </div>
         )}
       </div>
-      <div className="pt-10">
-        <ClubInformation club={club} />
+      <div
+        className={classNames(
+          'flex',
+          team.handball_net_configuration?.table_script === undefined
+            ? ''
+            : 'pt-10'
+        )}
+      >
+        <ClubInformation
+          club={club}
+          isSmall={team.handball_net_configuration?.table_script === undefined}
+        />
       </div>
     </div>
   )

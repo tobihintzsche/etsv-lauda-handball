@@ -1,6 +1,5 @@
 import client from '../../apollo-client'
 import { Gameplan } from '../../components/HandballNet/Gameplan'
-import { Table } from '../../components/HandballNet/Table'
 import { TeamNewsComponent } from '../../components/Team/TeamNews'
 import React from 'react'
 
@@ -11,6 +10,8 @@ import { GET_TEAM_NEWS } from '../../queries/teamNewsQueries'
 import { TeamNews } from '../../types/teamNewsTypes'
 import TeamInformation from '../../components/Team/TeamInformationElement'
 import { ApolloError } from '@apollo/client'
+import { ErrorBoundary } from '../../components/ErrorBoundary'
+import { Table } from '../../components/HandballNet/Table'
 
 export interface TeamOverviewPageProps {
   team: Team
@@ -21,6 +22,14 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
   team,
   latestTeamNews,
 }) => {
+  if (!team)
+    return (
+      <p>
+        Das gesuchte Team existiert nicht, bitte überprüfen Sie ihre Eingaben
+        oder wählen Sie ein Team aus der Navigation aus.
+      </p>
+    )
+
   const {
     name,
     team_picture,
@@ -33,13 +42,6 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
 
   const isTableOrGameplanDefined = Boolean(table_script || gameplan_script)
 
-  if (!team)
-    return (
-      <p>
-        Das gesuchte Team existiert nicht, bitte überprüfen Sie ihre Eingaben
-        oder wählen Sie ein Team aus der Navigation aus.
-      </p>
-    )
   return (
     <div className="flex flex-col xl:flex-row gap-10">
       <div className="flex-2 flex flex-col gap-8">
@@ -79,7 +81,9 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
         {isTableOrGameplanDefined ? (
           <>
             {table_script && (
+              // <ErrorBoundary fallback={<div>Error: Could not load table</div>}>
               <Table table_script={table_script} name={team.name} />
+              // </ErrorBoundary>
             )}
             {gameplan_script && (
               <Gameplan gameplan_script={gameplan_script} name={team.name} />
@@ -121,7 +125,11 @@ export async function getServerSideProps({
     try {
       const latestTeamNewsId: string = data.team.teamsNews[0].id
 
-      const { data: teamNewsResponse } = await client.query({
+      const {
+        data: teamNewsResponse,
+        error: teamNewsResponseError,
+        loading,
+      } = await client.query({
         query: GET_TEAM_NEWS,
         variables: { id: latestTeamNewsId },
       })

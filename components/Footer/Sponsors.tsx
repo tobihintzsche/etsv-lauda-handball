@@ -16,25 +16,21 @@ const SponsorComponent: React.FC<SponsorComponentProps> = ({ sponsors }) => {
             <div className="flex flex-col md:flex-row gap-6">
               {sponsors.map((sponsor, index) => {
                 return (
-                  <>
-                    {sponsor && (
-                      <div
-                        className="flex md:flex-1 h-52 md:h-auto justify-center items-center shadow-[5px_5px_20px_3px_rgba(0,0,0,0.25)] "
-                        key={index}
-                      >
-                        <Link href={sponsor.link}>
-                          <div className="p-2">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={sponsor.image.url}
-                              alt={sponsor.name}
-                              className="object-fit max-h-[180px] lg:h-full lg:w-full"
-                            />
-                          </div>
-                        </Link>
+                  <div
+                    className="flex md:flex-1 h-52 md:h-auto justify-center items-center shadow-[5px_5px_20px_3px_rgba(0,0,0,0.25)] "
+                    key={index}
+                  >
+                    <Link href={sponsor.link}>
+                      <div className="p-2">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={sponsor.image.url}
+                          alt={sponsor.name}
+                          className="object-fit max-h-[180px] lg:h-full lg:w-full"
+                        />
                       </div>
-                    )}
-                  </>
+                    </Link>
+                  </div>
                 )
               })}
             </div>
