@@ -41,7 +41,7 @@ export default function Teams() {
                   if (teams.length > 0)
                     return (
                       <div key={gender} className="">
-                        <div className="text-2xl mb-4 md:text-4xl xl:text-5xl w-min text-primary bg-origin-padding bg-black shadow-[0px_0px_0px_6px_rgba(0,0,0,1)]">
+                        <div className="text-2xl mb-4 md:text-4xl xl:text-5xl w-min text-primary-200 bg-origin-padding bg-black shadow-[0px_0px_0px_6px_rgba(0,0,0,1)]">
                           {genderMapping[gender].toUpperCase()}
                         </div>
 

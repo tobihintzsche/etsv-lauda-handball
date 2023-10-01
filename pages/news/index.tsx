@@ -98,7 +98,7 @@ export default function NewsPage({ teamsNews }: NewsPageProps) {
       {showLoadMoreButton && (
         <div className="flex justify-center pt-4">
           <button
-            className="bg-primary rounded-md p-2 text-xl lg:text-2xl"
+            className="bg-primary-200 rounded-md p-2 text-xl lg:text-2xl"
             onClick={loadMore}
           >
             Weitere Beiträge
@@ -127,7 +127,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({
       key={teamName}
       onClick={() => handleFilterClick(teamName)}
       className={`border-2 rounded-md text-xl p-1 lg:text-2xl ${
-        activeFilters.includes(teamName) ? 'bg-primary' : ''
+        activeFilters.includes(teamName) ? 'bg-primary-200' : ''
       }`}
     >
       {teamName}

@@ -20,7 +20,7 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
   const { open, isOpen, close } = useDialogHandler({ initialValue: false })
 
   return (
-    <div className="bg-primary mb-4 relative">
+    <div className="bg-primary-200 mb-4 relative">
       <div className="flex justify-between md:py-2 px-4 h-10 md:h-12 md:px-8 ">
         <div className="text-2xl md:text-4xl lg:text-3xl my-auto">
           <Link href="/">ETSV LAUDA HANDBALL</Link>
@@ -43,7 +43,7 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
             isOpen ? 'block' : 'hidden'
           }`}
         >
-          <div className="absolute pt-2 inset-y-0 right-0 max-w-full flex h-full w-screen overflow-y-auto bg-primary">
+          <div className="absolute pt-2 inset-y-0 right-0 max-w-full flex h-full w-screen overflow-y-auto bg-primary-200">
             <div className="flex-1 relative flex flex-col px-4 md:px-8 pb-2">
               <MobileNavigation
                 navigation={navigationConfig.navigation}

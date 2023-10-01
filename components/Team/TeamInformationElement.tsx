@@ -31,14 +31,14 @@ interface CoachesProps {
 const Coaches = ({ team }: CoachesProps) => {
   return (
     <>
-      <h2 className="text-2xl w-min whitespace-nowrap bg-black text-primary shadow-[0px_0px_0px_3px_rgba(0,0,0,1)]">
+      <h2 className="text-2xl w-min whitespace-nowrap bg-black text-primary-200 shadow-[0px_0px_0px_3px_rgba(0,0,0,1)]">
         TRAINER:
       </h2>
       <div className="flex pt-2 flex-col gap-4">
         {team.coaches.map((coach, index) => {
           const { name, telephone, eMail } = coach
           return (
-            <div className="text-lg lg:text-xl" key={index}>
+            <div className="text-md lg:text-lg" key={index}>
               <div>{name.toUpperCase()}</div>
               <div>{telephone}</div>
               <div>{eMail}</div>
@@ -57,7 +57,7 @@ interface PracticeTimesProps {
 const PracticeTimes = ({ team }: PracticeTimesProps) => {
   return (
     <>
-      <h2 className="text-2xl w-min whitespace-nowrap bg-black text-primary shadow-[0px_0px_0px_3px_rgba(0,0,0,1)]">
+      <h2 className="text-2xl w-min whitespace-nowrap bg-black text-primary-200 shadow-[0px_0px_0px_3px_rgba(0,0,0,1)]">
         TRAININGSZEITEN:
       </h2>{' '}
       <div className="flex flex-col gap-2 pr-10">
@@ -65,7 +65,7 @@ const PracticeTimes = ({ team }: PracticeTimesProps) => {
           const { date, practiceLocation } = practiceTime
           const { google_maps_link, name } = practiceLocation
           return (
-            <div className="text-lg lg:text-xl pt-2" key={index}>
+            <div className="text-md lg:text-lg pt-2" key={index}>
               <div className="flex flex-wrap whitespace-nowrap">{date}</div>
               <Link className="hover:text-blue-900" href={google_maps_link}>
                 {name}

@@ -33,7 +33,7 @@ export function TeamNewsComponent({
         >
           {teamNews.title.toUpperCase()}
         </h1>
-        <p className="text-lg lg:text-xl leading-8 py-1">
+        <p className="text-md lg:text-lg py-1">
           {teamNews.description.substring(0, 250) + ' ... '}
           <span className="text-amber-400">
             <Link href={`/news/${teamNews.slug}-${teamNews.id}`}>

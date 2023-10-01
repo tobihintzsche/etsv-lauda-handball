@@ -44,7 +44,7 @@ a {
   color: black;
 }
 .hb-embed__title-container {
-  @apply border-b-primary !important;
+  @apply border-b-primary-200 !important;
 }
 
 .hb-embed__schedule
@@ -92,17 +92,17 @@ a {
 }
 
 .hb-embed__post {
-  @apply bg-primary !important;
+  @apply bg-primary-200 !important;
   color: black !important;
 }
 
 .hb-embed__btn {
-  @apply bg-primary !important;
+  @apply bg-primary-200 !important;
   border: #facc14 !important;
 }
 
 .hb-embed__table thead th {
-  @apply border-b-primary !important;
+  @apply border-b-primary-200 !important;
 }
 
 .hb-embed__btn-box {

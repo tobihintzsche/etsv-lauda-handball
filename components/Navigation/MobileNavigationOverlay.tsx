@@ -24,7 +24,7 @@ export const MobileNavigationOverlay: React.FC<
       }`}
     >
       <div className="absolute inset-y-0 right-0 max-w-full flex">
-        <div className="h-full w-screen overflow-y-auto bg-primary">
+        <div className="h-full w-screen overflow-y-auto bg-primary-200">
           <div className="flex-1 relative flex flex-col px-4 md:px-8 pb-2">
             <div>
               <div className="absolute items-center right-4 md:right-8 md:top-2">

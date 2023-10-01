@@ -24,7 +24,7 @@ const ClubInformation: React.FC<ClubInformationProps> = ({ club, isSmall }) => {
             <div className="px-6 lg:px-0">
               <h2
                 className={classNames(
-                  'text-2xl  text-primary bg-origin-padding lg:bg-black lg:shadow-[0px_0px_0px_6px_rgba(0,0,0,1)]',
+                  'text-2xl  text-primary-200 bg-origin-padding lg:bg-black lg:shadow-[0px_0px_0px_6px_rgba(0,0,0,1)]',
                   isSmall ? '' : 'lg:text-4xl'
                 )}
               >

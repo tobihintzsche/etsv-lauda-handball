@@ -71,7 +71,7 @@ const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({
           <TeamNewsComponent showLogo={true} teamNews={latestTeamNews} />
           <div className="flex justify-center pt-4">
             <Link href={'/news'}>
-              <button className="bg-primary rounded-md p-2 text-xl lg:text-2xl">
+              <button className="bg-primary-200 rounded-md p-2 text-xl lg:text-2xl">
                 ZU ALLEN NEWS
               </button>
             </Link>

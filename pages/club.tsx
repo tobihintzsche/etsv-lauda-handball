@@ -15,14 +15,14 @@ export default function ClubPage({ club }: ClubPageProps) {
     <div className="p-6 shadow-card">
       <ClubBanner club={club} />
       <div
-        className="text-lg md:text-xl pb-8 lg:pb-10 whitespace-pre-wrap"
+        className="text-md md:text-lg pb-8 lg:pb-10 whitespace-pre-wrap"
         dangerouslySetInnerHTML={{
           __html: club.description,
         }}
       />
 
       <div className="flex flex-col lg:flex-row lg:justify-between gap-4">
-        <div className="text-lg lg:text-xl">
+        <div className="text-md lg:text-lg">
           <div className="text-2xl">ABTEILUNGSLEITER</div>
 
           <div>{name}</div>
@@ -51,7 +51,7 @@ export const ClubBanner: React.FC<ClubBannerProps> = ({ club }) => {
       </h1>
       <div className="bg-black lg:bg-inherit -mx-6 lg:mx-0 py-2 lg:py-0">
         <div className="px-6 lg:px-0">
-          <h2 className="text-2xl lg:text-4xl text-primary bg-origin-padding lg:bg-black lg:shadow-[0px_0px_0px_6px_rgba(0,0,0,1)]">
+          <h2 className="text-2xl lg:text-4xl text-primary-200 bg-origin-padding lg:bg-black lg:shadow-[0px_0px_0px_6px_rgba(0,0,0,1)]">
             {subline}
           </h2>
         </div>
