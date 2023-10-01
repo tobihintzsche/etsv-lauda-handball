@@ -11,46 +11,69 @@ export interface TeamInformationProps {
 
 const TeamInformation: React.FC<TeamInformationProps> = ({ team }) => {
   return (
-    <div className="p-6 flex flex-wrap gap-4 shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
+    <div className="p-6 flex flex-wrap gap-4 shadow-card">
       <div className="flex-1">
-        <h2 className="text-2xl w-min whitespace-nowrap bg-black text-yellow-400 shadow-[0px_0px_0px_3px_rgba(0,0,0,1)]">
-          TRAINER:
-        </h2>
-        <div className="flex pt-2 flex-col gap-4">
-          {team.coaches.map((coach, index) => {
-            return (
-              <div className="text-lg lg:text-xl" key={index}>
-                <div>{coach.name.toUpperCase()}</div>
-                <div>{coach.telephone}</div>
-                <div>{coach.eMail}</div>
-              </div>
-            )
-          })}
-        </div>
+        <Coaches team={team} />
       </div>
       <div className="flex-1">
-        <h2 className="text-2xl w-min whitespace-nowrap bg-black text-yellow-400 shadow-[0px_0px_0px_3px_rgba(0,0,0,1)]">
-          TRAININGSZEITEN:
-        </h2>
-        <div className="flex flex-col gap-2 pr-10">
-          {team.practice_times.map((practiceTime, index) => {
-            return (
-              <div className="text-lg lg:text-xl pt-2" key={index}>
-                <div className="flex flex-wrap">
-                  <div className="whitespace-nowrap">{practiceTime.date}</div>
-                </div>
-                <div className="hover:text-blue-900">
-                  <Link href={practiceTime.practiceLocation.google_maps_link}>
-                    {practiceTime.practiceLocation.name}
-                  </Link>
-                </div>
-              </div>
-            )
-          })}
-        </div>
+        <PracticeTimes team={team} />
       </div>
     </div>
   )
 }
 
 export default TeamInformation
+
+interface CoachesProps {
+  team: Team
+}
+
+const Coaches = ({ team }: CoachesProps) => {
+  return (
+    <>
+      <h2 className="text-2xl w-min whitespace-nowrap bg-black text-primary shadow-[0px_0px_0px_3px_rgba(0,0,0,1)]">
+        TRAINER:
+      </h2>
+      <div className="flex pt-2 flex-col gap-4">
+        {team.coaches.map((coach, index) => {
+          const { name, telephone, eMail } = coach
+          return (
+            <div className="text-lg lg:text-xl" key={index}>
+              <div>{name.toUpperCase()}</div>
+              <div>{telephone}</div>
+              <div>{eMail}</div>
+            </div>
+          )
+        })}
+      </div>
+    </>
+  )
+}
+
+interface PracticeTimesProps {
+  team: Team
+}
+
+const PracticeTimes = ({ team }: PracticeTimesProps) => {
+  return (
+    <>
+      <h2 className="text-2xl w-min whitespace-nowrap bg-black text-primary shadow-[0px_0px_0px_3px_rgba(0,0,0,1)]">
+        TRAININGSZEITEN:
+      </h2>{' '}
+      <div className="flex flex-col gap-2 pr-10">
+        {team.practice_times.map((practiceTime, index) => {
+          const { date, practiceLocation } = practiceTime
+          const { google_maps_link, name } = practiceLocation
+          return (
+            <div className="text-lg lg:text-xl pt-2" key={index}>
+              <div className="flex flex-wrap whitespace-nowrap">{date}</div>
+              <Link className="hover:text-blue-900" href={google_maps_link}>
+                {name}
+              </Link>
+            </div>
+          )
+        })}
+      </div>
+    </>
+  )
+}

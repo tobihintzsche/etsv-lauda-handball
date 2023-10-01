@@ -3,8 +3,8 @@ import React from 'react'
 import Image from 'next/image'
 import CuttedLogo from '../../images/Handball_Logo_Cutted_Square_Project.svg'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { TeamNews } from '../../types/teamNewsTypes'
+import { useRouter } from 'next/router'
 
 export interface TeamNewsProps {
   teamNews: TeamNews
@@ -23,7 +23,7 @@ export function TeamNewsComponent({
 
   return (
     <div className="relative">
-      <div className="bg-white px-6 pt-6 shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
+      <div className="bg-white px-6 pt-6 shadow-card">
         <h1
           className="text-3xl lg:text-4xl font-normal"
           style={{

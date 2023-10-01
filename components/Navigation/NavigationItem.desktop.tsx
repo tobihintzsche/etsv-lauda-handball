@@ -67,7 +67,7 @@ function DesktopNavigationItem({
             ></div>
             <div
               className={classNames(
-                'absolute left-0 w-full z-30 py-6 bg-yellow-400 h-[250px] duration-300 elevation-bottom',
+                'absolute left-0 w-full z-30 py-6 bg-primary h-[250px] duration-300 elevation-bottom',
                 openSubNav !== currentNavItem && 'hidden'
               )}
             >

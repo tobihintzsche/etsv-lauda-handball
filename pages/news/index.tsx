@@ -66,22 +66,23 @@ export default function NewsPage({ teamsNews }: NewsPageProps) {
   }, [activeFilters, filteredData])
 
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <h1 className="text-3xl lg:text-4xl">ALLE NEWS</h1>
-      <div className="flex overflow-scroll whitespace-nowrap -mx-4 pb-4">
+      <div className="flex gap-2 overflow-scroll whitespace-nowrap -mx-4 pb-2">
         {allTeams.map((teamName: string, index) => {
           let highlightClassName
           if (index === allTeams.length - 1)
             highlightClassName = lastHighlightClassName
           if (index === 0) highlightClassName = firstHighlightClassName
           return (
-            <FilterButton
-              key={index}
-              className={highlightClassName}
-              teamName={teamName}
-              activeFilters={activeFilters}
-              handleFilterClick={handleFilterClick}
-            />
+            <div className={highlightClassName} key={index}>
+              <FilterButton
+                className={highlightClassName}
+                teamName={teamName}
+                activeFilters={activeFilters}
+                handleFilterClick={handleFilterClick}
+              />
+            </div>
           )
         })}
       </div>
@@ -97,7 +98,7 @@ export default function NewsPage({ teamsNews }: NewsPageProps) {
       {showLoadMoreButton && (
         <div className="flex justify-center pt-4">
           <button
-            className="bg-yellow-400 rounded-md p-2 text-xl lg:text-2xl"
+            className="bg-primary rounded-md p-2 text-xl lg:text-2xl"
             onClick={loadMore}
           >
             Weitere Beiträge
@@ -122,17 +123,15 @@ const FilterButton: React.FC<FilterButtonProps> = ({
   className,
 }) => {
   return (
-    <div className={className}>
-      <button
-        key={teamName}
-        onClick={() => handleFilterClick(teamName)}
-        className={`border-2 rounded-md text-xl lg:text-2xl px-2 py-1 m-1 ${
-          activeFilters.includes(teamName) ? 'bg-yellow-400' : ''
-        }`}
-      >
-        {teamName}
-      </button>
-    </div>
+    <button
+      key={teamName}
+      onClick={() => handleFilterClick(teamName)}
+      className={`border-2 rounded-md text-xl p-1 lg:text-2xl ${
+        activeFilters.includes(teamName) ? 'bg-primary' : ''
+      }`}
+    >
+      {teamName}
+    </button>
   )
 }
 

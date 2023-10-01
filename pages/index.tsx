@@ -23,43 +23,27 @@ export default function HomePage({
   team,
   club,
 }: HomePageProps) {
+  const { name, handball_net_configuration } = team
+  const table_script = handball_net_configuration?.table_script
+
   return (
     <div
       className={classNames(
-        'flex',
-        team.handball_net_configuration?.table_script
-          ? 'flex-col'
-          : 'flex-col lg:flex-row gap-8'
+        'flex gap-8',
+        table_script ? 'flex-col' : 'flex-col lg:flex-row gap-8'
       )}
     >
       <div className="flex flex-col lg:flex-row gap-8">
         <div className="flex-2">
           <TeamNewsComponent teamNews={latestHomeTeamNews} />
         </div>
-        {team.handball_net_configuration?.table_script && (
+        {table_script && (
           <div className="flex-1">
-            {team.handball_net_configuration.table_script && (
-              <Table
-                table_script={team.handball_net_configuration.table_script}
-                name={team.name}
-              />
-            )}
+            <Table table_script={table_script} name={name} />
           </div>
         )}
       </div>
-      <div
-        className={classNames(
-          'flex',
-          team.handball_net_configuration?.table_script === undefined
-            ? ''
-            : 'pt-10'
-        )}
-      >
-        <ClubInformation
-          club={club}
-          isSmall={team.handball_net_configuration?.table_script === undefined}
-        />
-      </div>
+      <ClubInformation club={club} isSmall={table_script === undefined} />
     </div>
   )
 }
@@ -79,14 +63,14 @@ export async function getServerSideProps(): Promise<ServerSideProps> {
 
   const teamSlug = homeRequestResponse.homes[0].team.slug
 
-  const { data: teamRequestResponse } = await client.query({
+  const { data: teamResponse } = await client.query({
     query: SINGLE_TEAM_QUERY,
     variables: { slug: teamSlug },
   })
 
-  const latestTeamNewsId: string = teamRequestResponse.team.teamsNews[0].id
+  const latestTeamNewsId: string = teamResponse.team.teamsNews[0].id
 
-  const { error, data: teamNewsResponse } = await client.query({
+  const { data: teamNewsResponse } = await client.query({
     query: GET_TEAM_NEWS,
     variables: { id: latestTeamNewsId },
   })
@@ -100,7 +84,7 @@ export async function getServerSideProps(): Promise<ServerSideProps> {
   return {
     props: {
       latestHomeTeamNews: teamNewsResponse.teamNews,
-      team: teamRequestResponse.team,
+      team: teamResponse.team,
       club,
     },
   }

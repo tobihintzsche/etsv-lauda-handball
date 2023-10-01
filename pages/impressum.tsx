@@ -4,24 +4,24 @@ import React from 'react'
 import { GET_CLUBS } from '../queries/clubQueries'
 import { Club } from '../types/clubTypes'
 
+import { head } from 'ramda'
+
 interface ImprintProps {
   club: Club
 }
 
-export default function Imprint({ club }: ImprintProps) {
+export const Imprint = ({ club }: ImprintProps) => {
   return (
-    <div className="p-6 shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
-      <div className="flex flex-col lg:flex-row lg:justify-between gap-4">
-        <div
-          className="text-md overflow-auto md:text-lg whitespace-pre-wrap"
-          dangerouslySetInnerHTML={{
-            __html: club.imprint,
-          }}
-        />
-      </div>
-    </div>
+    <div
+      className="text-md overflow-auto p-6 shadow-card md:text-lg whitespace-pre-wrap"
+      dangerouslySetInnerHTML={{
+        __html: club.imprint,
+      }}
+    />
   )
 }
+
+export default Imprint
 
 interface ServerSideProps {
   props: {
@@ -34,7 +34,7 @@ export async function getServerSideProps(): Promise<ServerSideProps> {
     query: GET_CLUBS,
   })
 
-  const club = clubResponse.clubs[0]
+  const club: Club = head(clubResponse.clubs) as unknown as Club
 
   return {
     props: {

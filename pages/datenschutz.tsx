@@ -3,25 +3,24 @@ import React from 'react'
 
 import { GET_CLUBS } from '../queries/clubQueries'
 import { Club } from '../types/clubTypes'
+import { head } from 'ramda'
 
 interface PrivacyContentProps {
   club: Club
 }
 
-export default function PrivacyContent({ club }: PrivacyContentProps) {
+export const PrivacyContent = ({ club }: PrivacyContentProps) => {
   return (
-    <div className="p-6 shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
-      <div className="flex flex-col lg:flex-row lg:justify-between gap-4">
-        <div
-          className="text-md overflow-auto md:text-lg whitespace-pre-wrap"
-          dangerouslySetInnerHTML={{
-            __html: club.privacy_content,
-          }}
-        />
-      </div>
-    </div>
+    <div
+      className="text-md overflow-auto md:text-lg p-6 shadow-card whitespace-pre-wrap"
+      dangerouslySetInnerHTML={{
+        __html: club.privacy_content,
+      }}
+    />
   )
 }
+
+export default PrivacyContent
 
 interface ServerSideProps {
   props: {
@@ -34,7 +33,7 @@ export async function getServerSideProps(): Promise<ServerSideProps> {
     query: GET_CLUBS,
   })
 
-  const club = clubResponse.clubs[0]
+  const club = head(clubResponse.clubs) as unknown as Club
 
   return {
     props: {

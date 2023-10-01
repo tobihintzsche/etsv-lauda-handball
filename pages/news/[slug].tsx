@@ -14,7 +14,7 @@ export interface TeamOverviewPageProps {
 
 const TeamOverviewPage: React.FC<TeamOverviewPageProps> = ({ news }) => {
   return (
-    <div className="flex gap-6 flex-col lg:flex-row shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
+    <div className="flex gap-6 flex-col lg:flex-row shadow-card">
       <div className="lg:flex-3 py-6 px-6">
         <h1 className="text-4xl lg:text-5xl">{news.title.toUpperCase()}</h1>
         <div>{formatTimestamp(news.createdAt)}</div>

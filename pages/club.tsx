@@ -12,7 +12,7 @@ interface ClubPageProps {
 export default function ClubPage({ club }: ClubPageProps) {
   const { name, telephone, eMail } = club.manager
   return (
-    <div className="p-6 shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
+    <div className="p-6 shadow-card">
       <ClubBanner club={club} />
       <div
         className="text-lg md:text-xl pb-8 lg:pb-10 whitespace-pre-wrap"
@@ -43,15 +43,16 @@ export interface ClubBannerProps {
 }
 
 export const ClubBanner: React.FC<ClubBannerProps> = ({ club }) => {
+  const { name, subline } = club
   return (
     <div className="flex pb-4 flex-col w-full lg:w-max">
       <h1 className="text-3xl pb-2 lg:pb-0 lg:text-5xl">
-        {club.name.toUpperCase()}
+        {name.toUpperCase()}
       </h1>
       <div className="bg-black lg:bg-inherit -mx-6 lg:mx-0 py-2 lg:py-0">
         <div className="px-6 lg:px-0">
-          <h2 className="text-2xl lg:text-4xl text-yellow-400 bg-origin-padding lg:bg-black lg:shadow-[0px_0px_0px_6px_rgba(0,0,0,1)]">
-            {club.subline}
+          <h2 className="text-2xl lg:text-4xl text-primary bg-origin-padding lg:bg-black lg:shadow-[0px_0px_0px_6px_rgba(0,0,0,1)]">
+            {subline}
           </h2>
         </div>
       </div>

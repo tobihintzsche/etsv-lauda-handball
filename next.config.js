@@ -20,6 +20,9 @@ const nextConfig = {
       ]
     },
   },
+  images: {
+    domains: ['media.graphassets.com'],
+  },
 }
 
 module.exports = nextConfig

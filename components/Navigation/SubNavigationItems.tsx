@@ -17,7 +17,7 @@ export const SubNavigationItems: React.FC<SubNavigationItemsProps> = ({
         <SubNavigationItem
           team={team}
           classNames={
-            'text-xl whitespace-nowrap hover:bg-black hover:text-yellow-400 hover:shadow-[0px_0px_0px_3px_rgba(0,0,0,1)] w-min md:text-2xl'
+            'text-xl whitespace-nowrap hover:bg-black hover:text-primary hover:shadow-[0px_0px_0px_3px_rgba(0,0,0,1)] w-min md:text-2xl'
           }
           key={index}
           handleClose={handleClose}

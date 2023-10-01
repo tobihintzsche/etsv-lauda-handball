@@ -8,10 +8,8 @@ interface ClubInformationProps {
 }
 
 const ClubInformation: React.FC<ClubInformationProps> = ({ club, isSmall }) => {
-  console.log(isSmall)
-
   return (
-    <div className="bg-white flex flex-col lg:flex-row  shadow-[10px_10px_30px_9px_rgba(0,0,0,0.25)]">
+    <div className="bg-white flex flex-col lg:flex-row  shadow-card">
       <div className="flex-2 px-6 py-6 pl-6">
         <div className="flex flex-col w-full lg:w-max">
           <h1
@@ -26,7 +24,7 @@ const ClubInformation: React.FC<ClubInformationProps> = ({ club, isSmall }) => {
             <div className="px-6 lg:px-0">
               <h2
                 className={classNames(
-                  'text-2xl  text-yellow-400 bg-origin-padding lg:bg-black lg:shadow-[0px_0px_0px_6px_rgba(0,0,0,1)]',
+                  'text-2xl  text-primary bg-origin-padding lg:bg-black lg:shadow-[0px_0px_0px_6px_rgba(0,0,0,1)]',
                   isSmall ? '' : 'lg:text-4xl'
                 )}
               >
