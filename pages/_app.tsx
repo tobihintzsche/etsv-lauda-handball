@@ -26,6 +26,9 @@ export default function App({
     <ApolloProvider client={client}>
       <LayoutContextProvider>
         <main className={hammersmithOne.className}>
+          {/* <div className="h-screen flex items-center justify-center">
+            <h1>Work in progress ...</h1>
+          </div> */}
           <Layout>
             <Component {...pageProps} />
           </Layout>
